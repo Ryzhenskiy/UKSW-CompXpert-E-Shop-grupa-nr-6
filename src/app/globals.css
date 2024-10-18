@@ -27,5 +27,5 @@ input[type='text']:disabled {
 }
 
 button[type='submit']:disabled {
-  @apply cursor-not-allowed bg-red-400;
+  @apply cursor-not-allowed bg-blue-400;
 }

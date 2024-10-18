@@ -3,7 +3,7 @@ const Filters = () => {
   const brands = ['Intel', 'AMD', 'NVIDIA', 'Corsair', 'Samsung'];
   return (
     <div className="w-64 p-4 bg-gray-100 rounded-lg shadow-md">
-      <h3 className="text-2xl font-semibold mb-4 uppercase underline">
+      <h3 className="text-2xl font-semibold mb-4 uppercase underline text-primary">
         Filters
       </h3>
       {/* Part Type Filter */}
