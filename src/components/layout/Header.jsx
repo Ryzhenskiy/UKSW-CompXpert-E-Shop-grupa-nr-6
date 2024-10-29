@@ -1,62 +1,118 @@
 'use client';
 
-import Link from '../../../node_modules/next/link';
-import Image from '../../../node_modules/next/image';
+import Link from 'next/link';
+import Image from 'next/image';
 import { useSession, signOut } from 'next-auth/react';
+import { useCurrentSession } from '@/app/hooks/useCurrentSession';
+import { useState } from 'react';
+import SearchBar from './SearchBar';
+import Person from '@/components/icons/Person';
 
 export const Header = () => {
-  const session = useSession();
-  const status = session.status;
+  const session = useCurrentSession();
+  const status = session?.status;
+  const userData = session?.session?.user;
+  const [isBurgerOpen, setIsBurgerOpen] = useState(false);
+
+  const userName = userData?.name?.split(' ')[0] || userData?.email || '';
+
+  const toggleBurgerMenu = () => setIsBurgerOpen((prev) => !prev);
+  const closeBurgerMenu = () => setIsBurgerOpen(false);
+
   return (
-    <header className="flex items-center justify-between">
-      <nav className="flex items-center gap-8 text-gray-500 font-semibold">
-        <Link
-          className="text-primary flex items-center gap-2 font-semibold text-2xl"
-          href={'/'}
+    <header className="flex items-center justify-between border-b-2 p-2">
+      <Link
+        href={'/'}
+        className="text-primary flex items-center gap-2 font-semibold text-2xl"
+      >
+        <Image
+          src={'/compxpert.png'}
+          width={120}
+          height={120}
+          alt={'CompXpert Logo'}
+        />
+      </Link>
+
+      <SearchBar />
+      {/* Desktop Navigation */}
+      <nav className="hidden sm:flex items-center text-gray-500 font-semibold">
+        <AuthLinks
+          status={status}
+          userName={userName}
+          onClose={closeBurgerMenu}
+        />
+      </nav>
+
+      {/* Mobile Burger Icon */}
+      <button
+        onClick={toggleBurgerMenu}
+        type="button"
+        className="sm:hidden text-gray-500 z-10 w-10"
+      >
+        |||
+      </button>
+
+      {/* Mobile Burger Menu */}
+      {isBurgerOpen && (
+        <div
+          className="w-[50%] fixed inset-y-0 right-0 flex flex-col transition-all items-center justify-center bg-black bg-opacity-80 text-white z-20"
+          onClick={closeBurgerMenu}
         >
-          <Image
-            src={'/compxpert.png'}
-            width={120}
-            height={120}
-            // layout={'fill'}
-            // objectFit={'contain'}
-            alt={'pizza'}
+          <AuthLinks
+            status={status}
+            userName={userName}
+            onClose={closeBurgerMenu}
           />
-        </Link>
-
-        <Link href={'/'}>Home</Link>
-        <Link href={'/products'}>Products</Link>
-        <Link href={''}>About</Link>
-        <Link href={''}>Contact</Link>
-      </nav>
-
-      <nav className="flex items-center gap-4 text-gray-500 font-semibold">
-        {' '}
-        {status === 'authenticated' && (
-          <button
-            onClick={() => signOut()}
-            className="bg-primary text-white px-8 py-2 rounded-full"
-          >
-            Logout
-          </button>
-        )}
-        {status === 'unauthenticated' && (
-          <>
-            <Link
-              href={'/login'}
-              className="bg-primary text-white px-8 py-2 rounded-full"
-            >
-              Login
-            </Link>
-            <Link
-              href={'/register'}
-              className="bg-primary text-white px-8 py-2 rounded-full"
-            >
-              Register
-            </Link>
-          </>
-        )}
-      </nav>
+        </div>
+      )}
     </header>
   );
 };
+
+const AuthLinks = ({ status, userName, onClose }) => (
+  <div className="flex flex-col sm:flex-row gap-4 items-center">
+    {status === 'authenticated' ? (
+      <>
+        <Link
+          href={'/profile'}
+          onClick={onClose}
+          className="flex items-center gap-1"
+        >
+          <div className="flex flex-col text-right">
+            <div className="italic">Cześć,</div>
+
+            <div>{userName}</div>
+          </div>
+
+          <Person className="w-8 h-8" />
+        </Link>
+        <button
+          onClick={() => {
+            signOut();
+            onClose();
+          }}
+          className="bg-primary text-white px-8 py-2 rounded-full"
+        >
+          Wyloguj
+        </button>
+      </>
+    ) : (
+      <>
+        <Link
+          href={'/login'}
+          onClick={onClose}
+          className="bg-primary text-white px-8 py-2 rounded-full"
+        >
+          Zaloguj się
+        </Link>
+        <Link
+          href={'/register'}
+          onClick={onClose}
+          className="bg-primary text-white px-8 py-2 rounded-full"
+        >
+          Zarejestruj się
+        </Link>
+      </>
+    )}
+  </div>
+);
