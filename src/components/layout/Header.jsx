@@ -27,8 +27,8 @@ export const Header = () => {
       >
         <Image
           src={'/compxpert.png'}
-          width={120}
-          height={120}
+          width={100}
+          height={100}
           alt={'CompXpert Logo'}
         />
       </Link>
@@ -91,7 +91,7 @@ const AuthLinks = ({ status, userName, onClose }) => (
             signOut();
             onClose();
           }}
-          className="bg-primary text-white px-8 py-2 rounded-full"
+          className="bg-primary text-white px-8 py-2"
         >
           Wyloguj
         </button>
@@ -101,14 +101,14 @@ const AuthLinks = ({ status, userName, onClose }) => (
         <Link
           href={'/login'}
           onClick={onClose}
-          className="bg-primary text-white px-8 py-2 rounded-full"
+          className="bg-primary text-white px-8 py-2"
         >
           Zaloguj się
         </Link>
         <Link
           href={'/register'}
           onClick={onClose}
-          className="bg-primary text-white px-8 py-2 rounded-full"
+          className="bg-primary text-white px-8 py-2"
         >
           Zarejestruj się
         </Link>

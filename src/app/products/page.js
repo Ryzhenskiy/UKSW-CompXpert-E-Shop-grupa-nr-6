@@ -40,12 +40,12 @@ const ProductsPage = () => {
   }
 
   return (
-    <section className="mt-5">
-      <div className="flex w-full">
+    <section className="mt-5 flex justify-center">
+      <div className="flex w-[95%]">
         <Filters handleFilterByPart={handleFilterByPart} />
-        <div className="flex-col w-[80%]">
+        <div className="flex-col p-2 w-[90%]">
           <h1>
-            {encodedSearchQuery} (
+            <b>{encodedSearchQuery.toUpperCase()}</b> (
             {
               filteredItems.filter((item) =>
                 item.title
@@ -55,6 +55,7 @@ const ProductsPage = () => {
             }{' '}
             wyniki)
           </h1>
+
           <div className="grid grid-cols-1 gap-4 p-2 sm:grid-cols-5">
             {filteredItems.length > 0 ? (
               filteredItems

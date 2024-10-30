@@ -2,7 +2,7 @@ const Filters = ({ handleFilterByPart }) => {
   const partTypes = ['CPU', 'GPU', 'Motherboard', 'RAM', 'Storage'];
   const brands = ['Intel', 'AMD', 'NVIDIA', 'Corsair', 'Samsung'];
   return (
-    <div className="w-fit p-4 bg-gray-100 rounded-lg shadow-md">
+    <div className=" w-[20%] p-4 bg-gray-100 rounded-lg shadow-md">
       {/* Part Type Filter */}
       <div className="mb-6">
         <h4 className="font-semibold mb-2">Part Type</h4>
