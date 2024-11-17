@@ -7,11 +7,17 @@ import { useCurrentSession } from '@/app/hooks/useCurrentSession';
 import { useState } from 'react';
 import SearchBar from './SearchBar';
 import Person from '@/components/icons/Person';
+import Heart from '@/components/icons/Heart';
+import Cart from '../icons/Cart';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
-  const session = useCurrentSession();
-  const status = session?.status;
-  const userData = session?.session?.user;
+  // const session = useCurrentSession();
+  // const status = session?.status;
+  // const userData = session?.session?.user;
+  const session = useSession();
+  const status = session.status;
+  const userData = session.data?.user;
   const [isBurgerOpen, setIsBurgerOpen] = useState(false);
 
   const userName = userData?.name?.split(' ')[0] || userData?.email || '';
@@ -69,50 +75,65 @@ export const Header = () => {
   );
 };
 
-const AuthLinks = ({ status, userName, onClose }) => (
-  <div className="flex flex-col sm:flex-row gap-4 items-center">
-    {status === 'authenticated' ? (
-      <>
-        <Link
-          href={'/profile'}
-          onClick={onClose}
-          className="flex items-center gap-1"
-        >
-          <div className="flex flex-col text-right">
-            <div className="italic">Cześć,</div>
+const AuthLinks = ({ status, userName, onClose }) => {
+  const cartProducts = useSelector((state) => state.cart.cartProducts);
+  return (
+    <div className="flex flex-col sm:flex-row gap-4 items-center">
+      {status === 'authenticated' ? (
+        <>
+          <Link
+            href={'/profile'}
+            onClick={onClose}
+            className="flex items-center gap-1"
+          >
+            <div className="flex flex-col text-right">
+              <div className="italic">Cześć,</div>
 
-            <div>{userName}</div>
+              <div>{userName}</div>
+            </div>
+
+            <Person className="w-8 h-8" />
+          </Link>
+          <div className="relative">
+            <Link href={'/cart'}>
+              <Cart className="w-8 h-8" />
+            </Link>
+            <span className="bg-primary px-2 rounded-lg text-white absolute -top-3 -right-3">
+              {cartProducts.length}
+            </span>
           </div>
+          <Link href={'/likedProducts'}>
+            <Heart className="w-8 h-8" />
+          </Link>
 
-          <Person className="w-8 h-8" />
-        </Link>
-        <button
-          onClick={() => {
-            signOut();
-            onClose();
-          }}
-          className="bg-primary text-white px-8 py-2"
-        >
-          Wyloguj
-        </button>
-      </>
-    ) : (
-      <>
-        <Link
-          href={'/login'}
-          onClick={onClose}
-          className="bg-primary text-white px-8 py-2"
-        >
-          Zaloguj się
-        </Link>
-        <Link
-          href={'/register'}
-          onClick={onClose}
-          className="bg-primary text-white px-8 py-2"
-        >
-          Zarejestruj się
-        </Link>
-      </>
-    )}
-  </div>
-);
+          <button
+            onClick={() => {
+              signOut();
+              onClose();
+            }}
+            className="bg-primary text-white px-8 py-2"
+          >
+            Wyloguj
+          </button>
+        </>
+      ) : (
+        <>
+          <Link
+            href={'/login'}
+            onClick={onClose}
+            className="bg-primary text-white px-8 py-2 rounded-lg"
+          >
+            Zaloguj&nbsp;się
+          </Link>
+          <Link
+            href={'/register'}
+            onClick={onClose}
+            className="bg-primary text-white px-8 py-2 rounded-lg"
+          >
+            Zarejestruj&nbsp;się
+          </Link>
+        </>
+      )}
+    </div>
+  );
+};

@@ -4,6 +4,7 @@ import UserTabs from '@/components/layout/UserTabs';
 import Edit from '@/components/icons/Edit';
 import { Trash } from '@/components/icons/Trash';
 import toast from 'react-hot-toast';
+import DeleteButton from '@/components/layout/DeleteButton';
 import { useProfile } from '@/app/hooks/UseProfile';
 
 import { useEffect, useState } from 'react';
@@ -139,13 +140,11 @@ const CategoriesPage = () => {
             >
               <Edit />
             </button>
-            <button
-              type="button"
-              className="hover:bg-gray-100 border border-gray-500"
-              onClick={() => removeCategory(category._id)}
-            >
-              <Trash />
-            </button>
+
+            <DeleteButton
+              label={<Trash />}
+              onDelete={() => removeCategory(category._id)}
+            />
           </div>
         </div>
       ))}

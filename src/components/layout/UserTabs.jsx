@@ -19,12 +19,15 @@ const UserTabs = ({ isAdmin }) => {
             Kategorie
           </Link>
           <Link
-            href={'/menu-items'}
-            className={/menu-items/.test(path) ? 'active' : ''}
+            href={'/adminProducts'}
+            className={/adminProducts/.test(path) ? 'active' : ''}
           >
             Produkty
           </Link>
-          <Link href={'/users'} className={path === '/user' ? 'active' : ''}>
+          <Link
+            href={'/users'}
+            className={path.includes('user') ? 'active' : ''}
+          >
             Użytkownicy
           </Link>
         </>
