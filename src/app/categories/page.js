@@ -41,8 +41,8 @@ const CategoriesPage = () => {
     });
 
     await toast.promise(deletingPromise, {
-      loading: 'Usunięcie...',
-      error: 'Wystąpił błąd przy usunięciu kategorii!',
+      loading: 'Usuwanie...',
+      error: 'Wystąpił błąd przy usuwaniu kategorii!',
       success: 'Kategoria została usunięta!',
     });
 
@@ -74,8 +74,8 @@ const CategoriesPage = () => {
     toast.promise(creatingPromise, {
       loading: editedCategory ? 'Edycja...' : 'Tworzenie kategorii...',
       success: editedCategory
-        ? 'Kategoria została edytowana'
-        : 'Kategoria została stworzona',
+        ? 'Edytowano kategorię'
+        : 'Stworzono kategorię',
       error: editedCategory
         ? 'Wystąpił błąd przy edycji kategorii!'
         : 'Wystąpił błąd przy tworzeniu kategorii!',
@@ -109,7 +109,7 @@ const CategoriesPage = () => {
           </div>
           <div className=" flex gap-2 pb-2">
             <button type="submit">
-              {editedCategory ? 'Edytuj' : 'Utworzyć'}
+              {editedCategory ? 'Edytuj' : 'Utwórz'}
             </button>
             {editedCategory && (
               <button

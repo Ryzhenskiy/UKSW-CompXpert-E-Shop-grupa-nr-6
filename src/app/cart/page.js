@@ -44,7 +44,7 @@ const CartPage = () => {
 
   function handleDeleteButtonClick(id) {
     dispatch(removeFromCart(id));
-    toast.success('Produkt został usunięty z koszyka');
+    toast.success('Produkt został usunięty z koszyka.');
   }
 
   async function proceedToCheckout(ev) {

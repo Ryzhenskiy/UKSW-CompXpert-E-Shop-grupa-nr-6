@@ -10,24 +10,24 @@ const HomeMenu = () => {
       <SectionHeaders header={'Aktualności'} className="mt-16" />
       <section className="grid  p-3 shadow-xl rounded-md gap-4 grid-cols-2 sm:grid-cols-5">
         <Actuality
-          title="Jest o co walczyć! Czyli Black Month 2024"
-          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji,"
+          title="Jest o co walczyć! Czyli Black Month 2024."
+          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji."
         />
         <Actuality
-          title="Jest o co walczyć! Czyli Black Month 2024"
-          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji,"
+          title="Najlepsze promocje, tylko w CompXpert."
+          description="Teraz czekają na ciebie super obniżki."
         />
         <Actuality
-          title="Jest o co walczyć! Czyli Black Month 2024"
-          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji,"
+          title="Najniższe ceny na nowy rok już w CompXpert."
+          description="Już dziś skorzystaj z najlepszych promocji."
         />
         <Actuality
-          title="Jest o co walczyć! Czyli Black Month 2024"
-          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji,"
+          title="Black Friday nadchodzi!"
+          description="Już jutro Black Friday w CompXpert."
         />
         <Actuality
-          title="Jest o co walczyć! Czyli Black Month 2024"
-          description="Przed nami Black Month &ndash; miesiąc najlepszych okazji,"
+          title="Zerknij na nasze nowe promocje."
+          description="Promocje już na ciebie czekają."
         />
       </section>
     </div>

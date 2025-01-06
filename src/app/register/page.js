@@ -39,7 +39,7 @@ const RegisterPage = () => {
       </h1>
       {userCreated && (
         <div className="my-4 text-center text-gray-500 text-lg">
-          Użytkownik został stworzony. Zaraz możesz{' '}
+          Użytkownik został utworzony. Zaraz możesz{' '}
           <Link href={'/login'} className="underline">
             zalogować się &raquo;
           </Link>
