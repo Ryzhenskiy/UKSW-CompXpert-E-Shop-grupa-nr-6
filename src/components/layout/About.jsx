@@ -4,24 +4,25 @@ const About = () => {
   return (
     <section>
       <section className="text-center my-8">
-        <SectionHeaders header={'Our story'} subheader={'About us'} />
+        <SectionHeaders header={'Nasza historia'} />
         <div className="text-gray-500 max-w-md mx-auto mt-4 flex flex-col gap-4">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia
-            qui culpa consequuntur libero placeat repellat quas sed, nobis ut
-            enim doloremque aliquam, quasi inventore earum obcaecati
-            voluptatibus nam corrupti sapiente!
+          CompXpert powstał w 2024 roku w Warszawie z inicjatywy, pasjonatów technologii, 
+          którzy dostrzegli brak profesjonalnych sklepów z akcesoriami komputerowymi. 
+          Początkowo założyciele sami obsługiwali klientów, oferując eksperckie doradztwo i 
+          starannie dobrany sprzęt, co szybko przyciągnęło grono wiernych użytkowników.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi
-            adipisci mollitia nostrum rerum deserunt earum neque libero atque
-            delectus fugiat! Quod repudiandae corporis natus iusto eaque beatae
-            minus perferendis nostrum!
+          Dzięki współpracy z profesjonalistami, personalizacji produktów i rozbudowie oferty
+          o podzespoły komputerowe, firma dynamicznie rosła, a dziś jest jednym z liderów na
+          polskim rynku. CompXpert zatrudnia ponad 50 osób, prowadzi własną linię akcesoriów i
+          stawia na innowacje oraz ekologię, budując społeczność wokół jakości i profesjonalizmu.
           </p>
           <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero,
-            facilis rem illo nulla doloribus qui ipsa animi. Tempore nulla
-            maxime aliquam
+          Historia CompXpert pokazuje, że pasja i zaangażowanie w rozwiązywanie realnych
+          roblemów klientów mogą stać się fundamentem trwałego sukcesu. CompXpert to przykład
+          na to, że nawet w obliczu dużej konkurencji można znaleźć swoją niszę i odnieść
+          sukces, jeśli stawia się na unikalne podejście do klienta i nieustannie się rozwija.
           </p>
         </div>
       </section>

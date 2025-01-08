@@ -19,11 +19,11 @@ const UsersPage = () => {
   }, []);
 
   if (loading) {
-    return 'Loading users info...';
+    return 'Ładowanie informacji o użytkowniku...';
   }
 
   if (!data.admin) {
-    return 'Not an admin';
+    return 'Odmowa dostępu!';
   }
 
   return (

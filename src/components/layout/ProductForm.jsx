@@ -23,11 +23,11 @@ const ProductForm = ({ onSubmit, product }) => {
   }, []);
 
   if (loading) {
-    return 'Loading user info...';
+    return 'Ładowanie...';
   }
 
   if (!data.admin) {
-    return 'Not an admin!';
+    return 'Odmowa dostępu!';
   }
   return (
     <form

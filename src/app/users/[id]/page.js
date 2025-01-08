@@ -37,18 +37,18 @@ const EditUserPage = () => {
       else reject();
     });
     await toast.promise(updatingPromise, {
-      loading: 'Updating...',
-      success: 'Profile updated!',
-      error: 'Failed to update!',
+      loading: 'Aktualizowanie...',
+      success: 'Profil został zaaktualizowany!',
+      error: 'Aktualizacja zakończyła się niepowodzeniem!',
     });
   }
 
   if (loading) {
-    return 'Laoding user info...';
+    return 'Ładowanie informacji o użytkowniku...';
   }
 
   if (!data.admin) {
-    return 'Not an admin!';
+    return 'Odmowa dostępu!';
   }
 
   return (

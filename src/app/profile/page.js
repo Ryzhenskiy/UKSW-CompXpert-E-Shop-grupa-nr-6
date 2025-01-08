@@ -46,9 +46,9 @@ const ProfilePage = () => {
     });
 
     toast.promise(savingPromise, {
-      loading: 'Loading...',
-      error: 'Error',
-      success: 'Profile saved!',
+      loading: 'Ładowanie...',
+      error: 'Błąd!',
+      success: 'Zmiany na profilu zostały zapisane!',
     });
   }
 

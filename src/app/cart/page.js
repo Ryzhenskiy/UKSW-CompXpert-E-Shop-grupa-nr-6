@@ -67,13 +67,13 @@ const CartPage = () => {
   return (
     <section className="mt-8 max-w-[80%] mx-auto">
       <div className="text-center">
-        <SectionHeaders header={'Cart'} />
+        <SectionHeaders header={'Koszyk'} />
       </div>
 
       <div className=" mt-8 grid grid-cols-2 gap-2">
         <div>
           {cartProducts?.length === 0 && (
-            <div>No products in your shopping cart {':('}</div>
+            <div>Brak produktów w koszyku.</div>
           )}
           {cartProducts?.length > 0 &&
             cartProducts.map((product, index) => (
@@ -108,7 +108,7 @@ const CartPage = () => {
                       </button>
                     </div>
                     <div className="text-lg font-semibold">
-                      $ {product.basePrice}
+                      {product.basePrice} zł
                     </div>
 
                     <div className="ml-2">
@@ -127,25 +127,25 @@ const CartPage = () => {
 
           <div className="py-2 justify-end items-center pr-16 flex">
             <div className="text-gray-500">
-              Subtotal: <br />
-              Delievery: <br />
-              Total:
+              Towary: <br />
+              Dostawa: <br />
+              Do zapłaty:
             </div>
 
             <div className="text-lg font-semibold pl-2 text-right">
-              ${subtotal} <br />
-              $5 <br />${subtotal + 5}
+              {subtotal} zł <br />
+              5 zł <br />{subtotal + 5} zł
             </div>
           </div>
         </div>
         <div className="bg-gray-100 p-4 rounded-lg h-fit">
-          <h2>Checkout</h2>
+          <h2>Dane zamówienia</h2>
           <form onSubmit={proceedToCheckout}>
             <AddressInputs
               addressProps={address}
               setAddressProps={handleAddressChange}
             />
-            <button type="submit">Pay: ${subtotal + 5} </button>
+            <button type="submit">Zapłać: {subtotal + 5} zł </button>
           </form>
         </div>
       </div>

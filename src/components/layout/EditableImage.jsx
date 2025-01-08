@@ -18,13 +18,13 @@ const EditableImage = ({ link, setLink }) => {
             setLink(link);
           });
         }
-        throw new Error('Something went wrong!');
+        throw new Error('Coś poszło nie tak!');
       });
 
       await toast.promise(uploadingPromise, {
-        loading: 'Loading...',
-        error: 'Error',
-        success: 'File uploaded!',
+        loading: 'Ładowanie...',
+        error: 'Błąd',
+        success: 'PLik został załadowany',
       });
     }
   }
