@@ -9,10 +9,10 @@ const LikedProductsPage = () => {
   return (
     <section className="mt-8">
       <div className="text-center">
-        <SectionHeaders header={'Favourites'} />
+        <SectionHeaders header={'Ulubione'} />
       </div>
       {likedProducts?.length === 0 && (
-        <div>No products in favourites list {':('}</div>
+        <div>Brak produktów na liście ulubionych.</div>
       )}
       {likedProducts?.length > 0 &&
         likedProducts.map((product, index) => <MenuItem product={product} />)}

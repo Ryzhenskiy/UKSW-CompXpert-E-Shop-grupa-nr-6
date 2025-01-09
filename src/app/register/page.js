@@ -68,7 +68,7 @@ const RegisterPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" disabled={creatingUser}>
-          Rejestruj
+          Rejestruj się
         </button>
 
         <div className="my-4 text-center text-gray-500">

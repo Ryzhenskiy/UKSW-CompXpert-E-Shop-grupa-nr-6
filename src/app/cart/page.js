@@ -110,18 +110,17 @@ const CartPage = () => {
               </div>
             </div>
           </div>
-
           <div className="bg-gray-100 p-4 rounded-lg h-fit">
-            <h2>Checkout</h2>
-            <form onSubmit={proceedToCheckout}>
-              <AddressInputs
-                addressProps={address}
-                setAddressProps={handleAddressChange}
-              />
-              <button type="submit">Zapłać: ${subtotal + 5}</button>
-            </form>
-          </div>
+          <h2>Dane zamówienia</h2>
+          <form onSubmit={proceedToCheckout}>
+            <AddressInputs
+              addressProps={address}
+              setAddressProps={handleAddressChange}
+            />
+            <button type="submit">Zapłać: {subtotal + 5} zł </button>
+          </form>
         </div>
+      </div>
       )}
     </section>
   );

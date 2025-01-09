@@ -69,7 +69,7 @@ const ProductsPage = () => {
                 )
                 .map((item) => <MenuItem product={item} />)
             ) : (
-              <h1>Items no found</h1>
+              <h1>Nie znaleziono przedmiotu.</h1>
             )}
           </div>
         </div>

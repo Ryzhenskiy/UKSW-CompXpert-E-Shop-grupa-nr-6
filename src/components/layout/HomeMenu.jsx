@@ -18,7 +18,7 @@ const HomeMenu = () => {
           description="Teraz czekają na ciebie super obniżki."
         />
         <Actuality
-          title="Najniższe ceny na nowy rok już w CompXpert."
+          title="Najniższe ceny na nowy rok czekają na ciebie w CompXpert."
           description="Już dziś skorzystaj z najlepszych promocji."
         />
         <Actuality

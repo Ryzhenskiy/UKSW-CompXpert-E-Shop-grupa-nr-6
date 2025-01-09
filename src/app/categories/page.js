@@ -83,11 +83,11 @@ const CategoriesPage = () => {
   }
 
   if (profileLoading) {
-    return 'Loading user info...';
+    return 'Ładowanie informacji o użytkowniku...';
   }
 
   if (!profileData.admin) {
-    return 'Not an admin!';
+    return 'Odmowa dostępu!';
   }
 
   return (
