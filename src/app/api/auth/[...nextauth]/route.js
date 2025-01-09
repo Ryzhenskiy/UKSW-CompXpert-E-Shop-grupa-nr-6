@@ -1,4 +1,6 @@
 import { User } from '@/app/models/User';
+import { UserInfo } from '@/app/models/UserInfo';
+import { getServerSession } from 'next-auth';
 import mongoose from 'mongoose';
 import NextAuth from 'next-auth';
 import bcrypt from 'bcrypt';
@@ -48,5 +50,20 @@ export const authOptions = {
   ],
 };
 
+export async function isAdmin() {
+  const session = await getServerSession(authOptions);
+  const userEmail = session?.user?.email;
+  if (!userEmail) {
+    return false;
+  }
+
+  const userInfo = await UserInfo.findOne({ email: userEmail });
+
+  if (!userInfo) {
+    return false;
+  }
+
+  return userInfo.admin === true;
+}
 const handler = NextAuth(authOptions);
 export { handler as GET, handler as POST };

@@ -20,18 +20,21 @@ const UserTabs = ({ isAdmin }) => {
           </Link>
           <Link
             href={'/adminProducts'}
-            className={/adminProducts/.test(path) ? 'active' : ''}
+            className={path === '/adminProducts' ? 'active' : ''}
           >
             Produkty
           </Link>
           <Link
             href={'/users'}
-            className={path.includes('user') ? 'active' : ''}
+            className={path.includes('/users') ? 'active' : ''}
           >
             Użytkownicy
           </Link>
         </>
       )}
+      <Link href={'/orders'} className={path === '/orders' ? 'active' : ''}>
+        Zamówienia
+      </Link>
     </div>
   );
 };

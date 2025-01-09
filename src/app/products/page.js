@@ -59,7 +59,7 @@ const ProductsPage = () => {
             wyniki)
           </h1>
 
-          <div className="grid grid-cols-1 gap-4 p-2 sm:grid-cols-5">
+          <div className="grid grid-cols-1 gap-10 p-2 sm:grid-cols-5">
             {products.length > 0 ? (
               products
                 .filter((item) =>

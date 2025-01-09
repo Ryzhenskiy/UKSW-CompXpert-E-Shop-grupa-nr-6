@@ -11,6 +11,7 @@ import UserTabs from '@/components/layout/UserTabs';
 const ProfilePage = () => {
   const session = useSession();
   const { status } = session;
+  console.log(status);
 
   const [user, setUser] = useState(null);
 
@@ -52,12 +53,12 @@ const ProfilePage = () => {
     });
   }
 
-  if (status === 'loading' || !profileFetched) {
-    return 'Loading...';
-  }
-
   if (status === 'unauthenticated') {
     return redirect('/login');
+  }
+
+  if (status === 'loading' || !profileFetched) {
+    return 'Loading...';
   }
 
   return (
