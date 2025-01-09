@@ -49,7 +49,7 @@ export const Header = () => {
         />
       </nav>
 
-      {/* Mobile Burger Icon */}
+      {/* Mobile Icon */}
       <button
         onClick={toggleBurgerMenu}
         type="button"
@@ -58,7 +58,7 @@ export const Header = () => {
         |||
       </button>
 
-      {/* Mobile Burger Menu */}
+      {/* Mobile Menu */}
       {isBurgerOpen && (
         <div
           className="w-[50%] fixed inset-y-0 right-0 flex flex-col transition-all items-center justify-center bg-black bg-opacity-80 text-white z-20"

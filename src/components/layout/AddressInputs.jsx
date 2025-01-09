@@ -1,5 +1,6 @@
 const AddressInputs = ({ addressProps, setAddressProps, disabled }) => {
   const { phone, streetAddress, postalCode, country, city } = addressProps;
+  
   return (
     <>
       <label className="text-primary font-semibold border-b border-primary block">

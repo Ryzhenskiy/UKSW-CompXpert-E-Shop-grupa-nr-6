@@ -35,7 +35,7 @@ const CartProduct = ({ product, onRemove }) => {
               +
             </button>
           </div>
-          <div className="text-lg font-semibold">$ {product.basePrice}</div>
+          <div className="text-lg font-semibold">{product.basePrice}{'\u00A0'}zł</div>
 
           {!!onRemove && (
             <div className="ml-2">

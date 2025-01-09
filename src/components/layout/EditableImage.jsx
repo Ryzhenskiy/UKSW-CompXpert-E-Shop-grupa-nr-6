@@ -24,10 +24,11 @@ const EditableImage = ({ link, setLink }) => {
       await toast.promise(uploadingPromise, {
         loading: 'Ładowanie...',
         error: 'Błąd',
-        success: 'PLik został załadowany',
+        success: 'Plik został załadowany.',
       });
     }
   }
+
   return (
     <div className="p-2 relative max-w-[120px]">
       {link && (
@@ -41,7 +42,7 @@ const EditableImage = ({ link, setLink }) => {
       )}
       {!link && (
         <div className=" bg-gray-200 p-2 text-center text-gray-500 rounded-lg mb-1">
-          Niema zdjęcia
+          Brak zdjęcia
         </div>
       )}
       <label>

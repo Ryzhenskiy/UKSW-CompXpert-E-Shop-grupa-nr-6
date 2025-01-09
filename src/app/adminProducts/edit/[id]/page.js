@@ -61,11 +61,11 @@ const AdminProductEditPage = () => {
   }
 
   if (loading) {
-    return 'Loading user info...';
+    return 'Ładowanie informacji...';
   }
 
   if (!data.admin) {
-    return 'Not an admin!';
+    return 'Odmowa dostępu!';
   }
   return (
     <section className="mt-8 max-w-md mx-auto">
@@ -81,7 +81,7 @@ const AdminProductEditPage = () => {
       <ProductForm onSubmit={handleFormSubmit} product={product} />
       <div className="max-w-md mx-auto mt-2">
         <div className="max-w-xs ml-auto pl-4">
-          <DeleteButton label={'Delete'} onDelete={handleDeleteClick} />
+          <DeleteButton label={'Usuń'} onDelete={handleDeleteClick} />
         </div>
       </div>
     </section>

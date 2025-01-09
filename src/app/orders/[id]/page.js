@@ -43,13 +43,13 @@ const OrderPage = () => {
     <section className="mt-8 mx-auto max-w-2xl">
       <div className="text-center">
         {' '}
-        <SectionHeaders mainHeader="Your order" />
+        <SectionHeaders mainHeader="Twoje zamówienie" />
         <div className="my-4">
           <p>Dziękujemy za zamówienie!</p>
           <p>Zadzwonimy, gdy zamówienie będzie w drodze!</p>
         </div>
       </div>
-      {loadingOrder && <div>Loading order...</div>}
+      {loadingOrder && <div>Ładowanie zamówienia...</div>}
       {order && (
         <div className="grid md:grid-cols-2 md:gap-16">
           <div>
@@ -57,17 +57,17 @@ const OrderPage = () => {
               <CartProduct product={product} />
             ))}
             <div className="text-right py-2 text-gray-500">
-              Subtotal:{' '}
+              Towary:{' '}
               <span className="text-black inline-block w-6 font-bold">
-                ${subtotal}
+                {subtotal}{'\u00A0'}zł
               </span>
               <br />
-              Delievery:{' '}
-              <span className="text-black inline-block w-6 font-bold">$5</span>
+              Dostawa:{' '}
+              <span className="text-black inline-block w-6 font-bold">5{'\u00A0'}zł</span>
               <br />
-              Total:{' '}
+              Do zapłaty:{' '}
               <span className="text-black inline-block w-6 font-bold">
-                ${subtotal + 5}
+                {subtotal + 5}{'\u00A0'}zł
               </span>
               <br />
             </div>

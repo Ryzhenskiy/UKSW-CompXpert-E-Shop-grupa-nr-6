@@ -68,7 +68,7 @@ const RegisterPage = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" disabled={creatingUser}>
-          Rejestruj się
+          Zarejestruj się
         </button>
 
         <div className="my-4 text-center text-gray-500">
@@ -83,7 +83,7 @@ const RegisterPage = () => {
           Zaloguj się z Google{' '}
         </button>
         <div className="text-center text-gray-500 mt-4 border-t pt-4">
-          Już masz konto?{' '}
+          Masz już konto?{' '}
           <Link href={'/login'} className="underline">
             Zaloguj się tutaj &raquo;
           </Link>
