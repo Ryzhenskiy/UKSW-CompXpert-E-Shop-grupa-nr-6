@@ -5,11 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/slices/cartSlice';
-import { addToLiked } from '../../../redux/slices/likedProductsSlice';
-import { addToShoppingList } from '../../../redux/slices/shoppingListSlice';
+import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
-import Heart from '../icons/Heart';
-import Edit from '../icons/Edit';
+import Edit from '@/components/icons/Edit';
 
 const MenuItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -18,14 +16,9 @@ const MenuItem = ({ product }) => {
     toast.success('Produkt został dodany do koszyka.');
   }
 
-  function handleAddProductToFavourites() {
-    dispatch(addToLiked(product));
-    toast.success('Produkt został dodany do ulubionych.');
-  }
-
-  function handleAddProductToShoppingList() {
-    dispatch(addToShoppingList(product));
-    toast.success('Produkt został dodany do listy zakupowej.');
+  function handleRemoveProductFromFavourites() {
+    dispatch(removeFromLiked(product));
+    toast.success('Produkt został usunięty z ulubionych.');
   }
   
   return (
@@ -62,24 +55,14 @@ const MenuItem = ({ product }) => {
         <button
           type="button"
           onClick={(ev) => {
-            handleAddProductToFavourites();
+            handleRemoveProductFromFavourites();
           }}
           className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
         >
-          <Heart className="w-6 h-6" />
+          <Edit className="w-6 h-6" />
         </button>
       </div>
     </div>
   );
 };
 export default MenuItem;
-
-//        <button
-//          type="button"
-//          onClick={(ev) => {
-//            handleAddProductToShoppingList();
-//          }}
-//          className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-//        >
-//          <Edit className="w-6 h-6" />
-//        </button>

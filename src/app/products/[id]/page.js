@@ -1,6 +1,11 @@
 'use client';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addToLiked } from '../../../../redux/slices/likedProductsSlice';
+import toast from 'react-hot-toast';
+import Heart from '@/components/icons/Heart';
+
 const MenuItemPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -13,6 +18,12 @@ const MenuItemPage = () => {
       })
     );
   }, []);
+
+  const dispatch = useDispatch();
+  function handleAddProductToFavourites() {
+    dispatch(addToLiked(product));
+    toast.success('Produkt został dodany do ulubionych.');
+  }
 
   return (
     <div className="flex flex-col md:flex-row items-center justify-center mt-8 md:items-start gap-36">
@@ -32,6 +43,16 @@ const MenuItemPage = () => {
             {product?.basePrice} zł
           </p>
           <button className="primary">Dodaj do koszyka</button>
+          <br/>
+          <button
+            type="button"
+            onClick={(ev) => {
+              handleAddProductToFavourites();
+            }}
+            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
+        >
+            <Heart className="w-6 h-6" />
+          </button>
         </div>
       </div>
 

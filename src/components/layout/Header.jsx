@@ -8,6 +8,7 @@ import { useState } from 'react';
 import SearchBar from './SearchBar';
 import Person from '@/components/icons/Person';
 import Heart from '@/components/icons/Heart';
+import Edit from '@/components/icons/Edit';
 import Cart from '../icons/Cart';
 import { useSelector } from 'react-redux';
 
@@ -106,6 +107,7 @@ const AuthLinks = ({ status, userName, onClose }) => {
             <Heart className="w-8 h-8" />
           </Link>
 
+          
           <button
             onClick={() => {
               signOut();
@@ -137,3 +139,8 @@ const AuthLinks = ({ status, userName, onClose }) => {
     </div>
   );
 };
+
+
+//          <Link href={'/shoppingList'}>
+//            <Edit className="w-8 h-8" />
+//          </Link>
