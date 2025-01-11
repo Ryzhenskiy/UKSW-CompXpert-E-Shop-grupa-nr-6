@@ -9,7 +9,7 @@ import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
 import Edit from '@/components/icons/Edit';
 
-const MenuItem = ({ product }) => {
+const MenuItemList = ({ product }) => {
   const dispatch = useDispatch();
   function handleAddProductToCart() {
     dispatch(addToCart(product));
@@ -65,4 +65,4 @@ const MenuItem = ({ product }) => {
     </div>
   );
 };
-export default MenuItem;
+export default MenuItemList;

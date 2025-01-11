@@ -22,7 +22,7 @@ const CartPage = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (window.location.href.includes('canceled=1')) {
-        toast.error('Payment failed :(');
+        toast.error('Błąd płatności :(');
       }
     }
   }, []);
