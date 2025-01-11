@@ -8,18 +8,29 @@ import { addToCart } from '../../../redux/slices/cartSlice';
 import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
 import Edit from '@/components/icons/Edit';
+import Trash from '@/components/icons/Trash';
 
-const MenuItemList = ({ product }) => {
+const MenuItemList = ({ product, onRemove }) => {
   const dispatch = useDispatch();
   function handleAddProductToCart() {
     dispatch(addToCart(product));
     toast.success('Produkt został dodany do koszyka.');
   }
 
-  function handleRemoveProductFromFavourites() {
-    dispatch(removeFromLiked(product));
+  //function handleRemoveProductFromFavourites() {
+  //  dispatch(removeFromLiked(product));
+  //  toast.success('Produkt został usunięty z ulubionych.');
+  //}
+
+  function handleRemoveProductFromFavourites(id) {
+    dispatch(onRemove(id));
     toast.success('Produkt został usunięty z ulubionych.');
   }
+
+  //function handleDeleteButtonClick(id) {
+  //  dispatch(onRemove(id));
+  //  toast.success('Produkt został usunięty z koszyka.');
+  //}
   
   return (
     <div className="w-64 h-[410px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
@@ -55,14 +66,16 @@ const MenuItemList = ({ product }) => {
         <button
           type="button"
           onClick={(ev) => {
-            handleRemoveProductFromFavourites();
+            handleRemoveProductFromFavourites(product._id);
           }}
           className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
         >
-          <Edit className="w-6 h-6" />
+          Usuń
         </button>
       </div>
     </div>
   );
 };
 export default MenuItemList;
+
+//<Edit className="w-6 h-6" />
