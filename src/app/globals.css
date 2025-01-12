@@ -11,6 +11,11 @@ input[type='tel'] {
   @apply block border p-2 border-gray-300 bg-gray-100;
 }
 
+textarea {
+  @apply block w-full  my-2 rounded-xl;
+  @apply block border p-2 border-gray-300 bg-gray-100;
+}
+
 button,
 .button {
   @apply flex w-full justify-center gap-2 text-gray-700 font-semibold;
