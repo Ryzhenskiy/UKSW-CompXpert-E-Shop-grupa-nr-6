@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/slices/cartSlice';
+import { incrementQty, decrementQty } from '../../../redux/slices/shoppingListSlice';
 import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
 import Edit from '@/components/icons/Edit';
@@ -48,10 +49,23 @@ const MenuItemList = ({ product, onRemove }) => {
         <h4 className="font-semibold text-xl my-3 h-[50px] line-clamp-1">
           {product.name}
         </h4>
-        <p className="text-gray-500 text-sm line-clamp-3 h-[60px]">
-          {product.description}
-        </p>
+        
       </Link>
+      <div className="flex items-center justify-between mt-4 text-gray-500">
+        <button
+          className="w-8 h-8  text-gray-600 font-bold flex items-center justify-center border"
+          onClick={(ev) => dispatch(decrementQty(product._id))}
+        >
+          -
+        </button>
+        <span className="text-lg font-semibold">{product.qty}</span>
+        <button
+          className="w-8 h-8 text-gray-600 font-bold flex items-center justify-center border"
+          onClick={(ev) => dispatch(incrementQty(product._id))}
+        >
+          +
+        </button>
+      </div>
       <div className="flex items-center justify-between mt-4 text-gray-500">
         {product.basePrice} zł
         <button
@@ -79,3 +93,7 @@ const MenuItemList = ({ product, onRemove }) => {
 export default MenuItemList;
 
 //<Edit className="w-6 h-6" />
+
+//        <p className="text-gray-500 text-sm line-clamp-3 h-[60px]">
+//          {product.description}
+//        </p>

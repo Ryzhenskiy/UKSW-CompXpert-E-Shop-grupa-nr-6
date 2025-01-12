@@ -11,7 +11,16 @@ const shoppingListSlice = createSlice({
   initialState,
   reducers: {
     addToShoppingList: (state, action) => {
-      state.shoppingListProducts.push({ ...action.payload });
+      const existingProduct = state.shoppingListProducts.find(
+        (product) => product._id === action.payload._id
+      );
+      
+      if (existingProduct) {
+        existingProduct.qty += 1;
+        console.log(JSON.stringify(existingProduct));
+      } else {
+        state.shoppingListProducts.push({ ...action.payload, qty: 1 });
+      }
 
       localStorage.setItem('listProducts', JSON.stringify(state.shoppingListProducts));
     },
