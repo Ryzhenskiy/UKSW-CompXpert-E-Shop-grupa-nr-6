@@ -3,8 +3,10 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToLiked } from '../../../../redux/slices/likedProductsSlice';
+import { addToShoppingList } from '../../../../redux/slices/shoppingListSlice';
 import toast from 'react-hot-toast';
 import Heart from '@/components/icons/Heart';
+import Edit from '@/components/icons/Edit';
 
 const MenuItemPage = () => {
   const { id } = useParams();
@@ -23,6 +25,11 @@ const MenuItemPage = () => {
   function handleAddProductToFavourites() {
     dispatch(addToLiked(product));
     toast.success('Produkt został dodany do ulubionych.');
+  }
+
+  function handleAddProductToShoppingList() {
+    dispatch(addToShoppingList(product));
+    toast.success('Produkt został dodany do listy zakupowej.');
   }
 
   return (
@@ -52,6 +59,16 @@ const MenuItemPage = () => {
             className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
         >
             <Heart className="w-6 h-6" />
+          </button>
+          <br/>
+          <button
+            type="button"
+            onClick={(ev) => {
+              handleAddProductToShoppingList();
+            }}
+            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
+          >
+            <Edit className="w-6 h-6" />
           </button>
         </div>
       </div>

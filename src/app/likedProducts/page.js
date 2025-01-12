@@ -2,7 +2,7 @@
 
 import { useSelector } from 'react-redux';
 import SectionHeaders from '@/components/layout/SectionHeaders';
-import MenuItemList from '@/components/menu/MenuItemList';
+import MenuItemList from '@/components/menu/MenuItemLiked';
 import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 
 const LikedProductsPage = () => {

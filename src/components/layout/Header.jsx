@@ -106,7 +106,10 @@ const AuthLinks = ({ status, userName, onClose }) => {
           <Link href={'/likedProducts'}>
             <Heart className="w-8 h-8" />
           </Link>
-
+          
+          <Link href={'/shoppingList'}>
+            <Edit className="w-8 h-8" />
+          </Link>
           
           <button
             onClick={() => {
