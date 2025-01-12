@@ -28,15 +28,14 @@ const About = () => {
       </section>
       <section className="text-center my-8">
         <SectionHeaders
-          subHeader={"Don't hesitate"}
-          mainHeader={'Contact us'}
+          header={"Kontakt"}
         />
         <div className="mt-8">
           <a
-            ahref="tel:+46738123123"
+            ahref="tel:+48333333333"
             className="text-4xl underline text-gray-500"
           >
-            +46 738 123 123
+            +48 333 333 333
           </a>
         </div>
       </section>

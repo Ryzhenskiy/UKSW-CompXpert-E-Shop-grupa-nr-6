@@ -30,7 +30,7 @@ const OrdersPage = () => {
     <section className="mt-8 max-w-2xl mx-auto">
       <UserTabs isAdmin={profile.admin} />
       <div className="mt-8">
-        {loadingOrders && <div>Loading orders...</div>}
+        {loadingOrders && <div>Ładowanie zamówień...</div>}
         {orders.length > 0 &&
           orders.map((order) => (
             <div className="bg-gray-100 mb-2 p-4 rounded-lg flex flex-col md:flex-row items-center gap-6">
@@ -42,7 +42,7 @@ const OrdersPage = () => {
                       ' p-2 rounded-md text-white w-24 text-center'
                     }
                   >
-                    {order.paid ? 'Zapłacono' : 'Nie zapłacono'}
+                    {order.paid ? 'Opłacono' : 'Nie opłacono'}
                   </div>
                 </div>
                 <div className="grow">

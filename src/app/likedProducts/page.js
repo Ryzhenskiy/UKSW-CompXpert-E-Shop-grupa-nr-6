@@ -2,7 +2,8 @@
 
 import { useSelector } from 'react-redux';
 import SectionHeaders from '@/components/layout/SectionHeaders';
-import MenuItem from '@/components/menu/MenuItem';
+import MenuItemList from '@/components/menu/MenuItemLiked';
+import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 
 const LikedProductsPage = () => {
   const likedProducts = useSelector((state) => state.liked.likedProducts);
@@ -14,8 +15,17 @@ const LikedProductsPage = () => {
       {likedProducts?.length === 0 && (
         <div>Brak produktów na liście ulubionych.</div>
       )}
-      {likedProducts?.length > 0 &&
-        likedProducts.map((product, index) => <MenuItem product={product} />)}
+      {likedProducts?.length > 0 && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
+          {likedProducts.map((product, index) => (
+            <MenuItemList 
+              key = {index}
+              product = {product}
+              onRemove = {removeFromLiked}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };

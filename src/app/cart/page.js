@@ -22,7 +22,7 @@ const CartPage = () => {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       if (window.location.href.includes('canceled=1')) {
-        toast.error('Payment failed :(');
+        toast.error('Błąd płatności :(');
       }
     }
   }, []);
@@ -79,12 +79,12 @@ const CartPage = () => {
   return (
     <section className="mt-8 max-w-[80%] mx-auto">
       <div className="text-center">
-        <SectionHeaders header={'Kozyk zakupowy'} />
+        <SectionHeaders header={'Koszyk zakupowy'} />
       </div>
 
       {cartProducts?.length === 0 ? (
         <div className="text-center mt-8">
-          <p>Niema produktów w koszyku {':('}</p>
+          <p>Brak produktów w koszyku {':('}</p>
         </div>
       ) : (
         <div className="mt-8 grid grid-cols-1 gap-2 sm:grid-cols-2">
@@ -105,8 +105,8 @@ const CartPage = () => {
               </div>
 
               <div className="text-lg font-semibold pl-2 text-right">
-                ${subtotal} <br />
-                $5 <br />${subtotal + 5}
+                {subtotal} zł <br />
+                5 zł <br />{subtotal + 5} zł
               </div>
             </div>
           </div>

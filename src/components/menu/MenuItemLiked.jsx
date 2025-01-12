@@ -5,28 +5,32 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../../redux/slices/cartSlice';
-import { addToLiked } from '../../../redux/slices/likedProductsSlice';
-import { addToShoppingList } from '../../../redux/slices/shoppingListSlice';
+import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
-import Heart from '../icons/Heart';
-import Edit from '../icons/Edit';
+import Edit from '@/components/icons/Edit';
+import Trash from '@/components/icons/Trash';
 
-const MenuItem = ({ product }) => {
+const MenuItemList = ({ product, onRemove }) => {
   const dispatch = useDispatch();
   function handleAddProductToCart() {
     dispatch(addToCart(product));
     toast.success('Produkt został dodany do koszyka.');
   }
 
-  function handleAddProductToFavourites() {
-    dispatch(addToLiked(product));
-    toast.success('Produkt został dodany do ulubionych.');
+  //function handleRemoveProductFromFavourites() {
+  //  dispatch(removeFromLiked(product));
+  //  toast.success('Produkt został usunięty z ulubionych.');
+  //}
+
+  function handleRemoveProductFromFavourites(id) {
+    dispatch(onRemove(id));
+    toast.success('Produkt został usunięty z ulubionych.');
   }
 
-  function handleAddProductToShoppingList() {
-    dispatch(addToShoppingList(product));
-    toast.success('Produkt został dodany do listy zakupowej.');
-  }
+  //function handleDeleteButtonClick(id) {
+  //  dispatch(onRemove(id));
+  //  toast.success('Produkt został usunięty z koszyka.');
+  //}
   
   return (
     <div className="w-64 h-[410px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
@@ -62,33 +66,16 @@ const MenuItem = ({ product }) => {
         <button
           type="button"
           onClick={(ev) => {
-            handleAddProductToFavourites();
+            handleRemoveProductFromFavourites(product._id);
           }}
           className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
         >
-          <Heart className="w-6 h-6" />
-        </button>
-        <button
-          type="button"
-          onClick={(ev) => {
-            handleAddProductToShoppingList();
-          }}
-          className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-        >
-          <Edit className="w-6 h-6" />
+          Usuń
         </button>
       </div>
     </div>
   );
 };
-export default MenuItem;
+export default MenuItemList;
 
-//        <button
-//          type="button"
-//          onClick={(ev) => {
-//            handleAddProductToShoppingList();
-//          }}
-//          className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-//        >
-//          <Edit className="w-6 h-6" />
-//        </button>
+//<Edit className="w-6 h-6" />

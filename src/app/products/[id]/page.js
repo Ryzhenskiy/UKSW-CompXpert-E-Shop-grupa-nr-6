@@ -2,17 +2,24 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useDispatch } from 'react-redux';
+import { addToLiked } from '../../../../redux/slices/likedProductsSlice';
+import { addToShoppingList } from '../../../../redux/slices/shoppingListSlice';
 import Rating from '@/components/layout/Rating';
 import ReviewCard from '@/components/layout/ReviewCard';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import SectionHeaders from '@/components/layout/SectionHeaders';
+import toast from 'react-hot-toast';
+import Heart from '@/components/icons/Heart';
+import Edit from '@/components/icons/Edit';
 
-const MenuItemPage = () => {
+const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState(null);
   const session = useSession();
+  const dispatch = useDispatch();
   const { status } = session;
 
   useEffect(() => {
@@ -32,6 +39,16 @@ const MenuItemPage = () => {
         setReviews(foundReviews);
       })
     );
+  }
+
+  function handleAddProductToFavourites() {
+    dispatch(addToLiked(product));
+    toast.success('Produkt został dodany do ulubionych.');
+  }
+
+  function handleAddProductToShoppingList() {
+    dispatch(addToShoppingList(product));
+    toast.success('Produkt został dodany do listy zakupowej.');
   }
 
   return (
@@ -54,6 +71,27 @@ const MenuItemPage = () => {
             </p>
             <button className="primary">Dodaj do koszyka</button>
           </div>
+
+          <br />
+          <button
+            type="button"
+            onClick={(ev) => {
+              handleAddProductToFavourites();
+            }}
+            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
+          >
+            <Heart className="w-6 h-6" />
+          </button>
+          <br />
+          <button
+            type="button"
+            onClick={(ev) => {
+              handleAddProductToShoppingList();
+            }}
+            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
+          >
+            <Edit className="w-6 h-6" />
+          </button>
         </div>
       </div>
       {status === 'unauthenticated' ? (
@@ -74,4 +112,5 @@ const MenuItemPage = () => {
     </div>
   );
 };
-export default MenuItemPage;
+
+export default ProductPage;

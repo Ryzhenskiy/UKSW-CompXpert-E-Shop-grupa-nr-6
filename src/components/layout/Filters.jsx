@@ -1,6 +1,7 @@
 const Filters = ({ handleFilterByPart }) => {
   const partTypes = ['CPU', 'GPU', 'Motherboard', 'RAM', 'Storage'];
   const brands = ['Intel', 'AMD', 'NVIDIA', 'Corsair', 'Samsung'];
+
   return (
     <div className=" w-[20%] p-4 bg-gray-100 rounded-lg shadow-md">
       {/* Part Type Filter */}
@@ -21,7 +22,7 @@ const Filters = ({ handleFilterByPart }) => {
 
       {/* Brand Filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Brand</h4>
+        <h4 className="font-semibold mb-2">Marka</h4>
         {brands.map((brand) => (
           <label key={brand} className="block mb-2">
             <input type="checkbox" value={brand} className="mr-2" />
@@ -32,7 +33,7 @@ const Filters = ({ handleFilterByPart }) => {
 
       {/* Price Filter */}
       <div className="mb-6">
-        <h4 className="font-semibold mb-2">Price Range</h4>
+        <h4 className="font-semibold mb-2">Zakres ceny</h4>
         <input type="range" min="50" max="5000" className="w-full" />
         <span className="block mt-2 text-sm"></span>
       </div>

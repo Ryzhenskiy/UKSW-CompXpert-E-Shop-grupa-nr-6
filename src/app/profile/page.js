@@ -58,7 +58,7 @@ const ProfilePage = () => {
   }
 
   if (status === 'loading' || !profileFetched) {
-    return 'Loading...';
+    return 'Ładowanie...';
   }
 
   return (

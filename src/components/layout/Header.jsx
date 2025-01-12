@@ -8,6 +8,7 @@ import { useState } from 'react';
 import SearchBar from './SearchBar';
 import Person from '@/components/icons/Person';
 import Heart from '@/components/icons/Heart';
+import Edit from '@/components/icons/Edit';
 import Cart from '../icons/Cart';
 import { useSelector } from 'react-redux';
 
@@ -49,7 +50,7 @@ export const Header = () => {
         />
       </nav>
 
-      {/* Mobile Burger Icon */}
+      {/* Mobile Icon */}
       <button
         onClick={toggleBurgerMenu}
         type="button"
@@ -58,7 +59,7 @@ export const Header = () => {
         |||
       </button>
 
-      {/* Mobile Burger Menu */}
+      {/* Mobile Menu */}
       {isBurgerOpen && (
         <div
           className="w-[50%] fixed inset-y-0 right-0 flex flex-col transition-all items-center justify-center bg-black bg-opacity-80 text-white z-20"
@@ -105,7 +106,11 @@ const AuthLinks = ({ status, userName, onClose }) => {
           <Link href={'/likedProducts'}>
             <Heart className="w-8 h-8" />
           </Link>
-
+          
+          <Link href={'/shoppingList'}>
+            <Edit className="w-8 h-8" />
+          </Link>
+          
           <button
             onClick={() => {
               signOut();
@@ -137,3 +142,8 @@ const AuthLinks = ({ status, userName, onClose }) => {
     </div>
   );
 };
+
+
+//          <Link href={'/shoppingList'}>
+//            <Edit className="w-8 h-8" />
+//          </Link>
