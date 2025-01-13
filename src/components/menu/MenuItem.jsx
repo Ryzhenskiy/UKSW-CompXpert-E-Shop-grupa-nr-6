@@ -68,15 +68,6 @@ const MenuItem = ({ product }) => {
         >
           <Heart className="w-6 h-6" />
         </button>
-        <button
-          type="button"
-          onClick={(ev) => {
-            handleAddProductToShoppingList();
-          }}
-          className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-        >
-          <Edit className="w-6 h-6" />
-        </button>
       </div>
     </div>
   );

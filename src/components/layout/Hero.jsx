@@ -1,9 +1,14 @@
 'use client';
 
+import { useRouter } from 'next/navigation'; // Importujemy hook do nawigacji
 import Image from 'next/image';
 import Right from '../icons/Right';
 
 const Hero = () => {
+  const router = useRouter(); // Hook do nawigacji
+  const all_products_page = () => {
+    router.push('/allProducts');
+  };
   return (
     <section className="relative h-[80vh] flex items-center justify-center  text-white">
       {/* Overlay */}
@@ -17,7 +22,7 @@ const Hero = () => {
             akcesoriów technicznych.
           </p>
           <div className="flex gap-2">
-            <button type="button" className="bg-primary text-white border-none">
+            <button type="button" className="bg-primary text-white border-none" onClick={all_products_page}>
               Zamów teraz
               <Right />
             </button>

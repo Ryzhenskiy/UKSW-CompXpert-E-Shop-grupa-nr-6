@@ -3,7 +3,11 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToLiked } from '../../../../redux/slices/likedProductsSlice';
-import { addToShoppingList } from '../../../../redux/slices/shoppingListSlice';
+import { addToShoppingList as addToShoppingList_1 } from '../../../../redux/slices/shoppingListSlice';
+import { addToShoppingList as addToShoppingList_2 } from '../../../../redux/slices/shoppingListSlice_2';
+import { addToShoppingList as addToShoppingList_3 } from '../../../../redux/slices/shoppingListSlice_3';
+import { addToShoppingList as addToShoppingList_4 } from '../../../../redux/slices/shoppingListSlice_4';
+import { addToShoppingList as addToShoppingList_5 } from '../../../../redux/slices/shoppingListSlice_5';
 import toast from 'react-hot-toast';
 import Heart from '@/components/icons/Heart';
 import Edit from '@/components/icons/Edit';
@@ -27,8 +31,24 @@ const MenuItemPage = () => {
     toast.success('Produkt został dodany do ulubionych.');
   }
 
-  function handleAddProductToShoppingList() {
-    dispatch(addToShoppingList(product));
+  function handleAddProductToShoppingList(nr) {
+    switch (nr) {
+      case 1:
+        dispatch(addToShoppingList_1(product));
+        break;
+      case 2:
+        dispatch(addToShoppingList_2(product));
+        break;
+      case 3:
+        dispatch(addToShoppingList_3(product));
+        break;
+      case 4:
+        dispatch(addToShoppingList_4(product));
+        break;
+      case 5:
+        dispatch(addToShoppingList_5(product));
+        break;
+    }
     toast.success('Produkt został dodany do listy zakupowej.');
   }
 
@@ -61,15 +81,20 @@ const MenuItemPage = () => {
             <Heart className="w-6 h-6" />
           </button>
           <br/>
-          <button
-            type="button"
-            onClick={(ev) => {
-              handleAddProductToShoppingList();
-            }}
-            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-          >
-            <Edit className="w-6 h-6" />
-          </button>
+          Dodaj do listy zakupowej:
+          <br/>
+          <div className="flex gap-2 mt-4"> {/* Flex container for buttons */}
+            {[1, 2, 3, 4, 5].map((nr) => (
+              <button
+                key={nr}
+                type="button"
+                onClick={() => handleAddProductToShoppingList(nr)}
+                className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all flex items-center justify-center"
+              >
+                {nr}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -14,24 +14,16 @@ import Trash from '@/components/icons/Trash';
 const MenuItemList = ({ product, onRemove }) => {
   const dispatch = useDispatch();
   function handleAddProductToCart() {
-    dispatch(addToCart(product));
+    for(let i=0; i<product.qty; i++){
+      dispatch(addToCart(product));
+    }
     toast.success('Produkt został dodany do koszyka.');
   }
-
-  //function handleRemoveProductFromFavourites() {
-  //  dispatch(removeFromLiked(product));
-  //  toast.success('Produkt został usunięty z ulubionych.');
-  //}
 
   function handleRemoveProductFromShoppingList(id) {
     dispatch(onRemove(id));
     toast.success('Produkt został usunięty z listy zakupowej.');
   }
-
-  //function handleDeleteButtonClick(id) {
-  //  dispatch(onRemove(id));
-  //  toast.success('Produkt został usunięty z koszyka.');
-  //}
   
   return (
     <div className="w-64 h-[410px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
