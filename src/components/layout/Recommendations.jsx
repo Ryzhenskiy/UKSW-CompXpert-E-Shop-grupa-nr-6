@@ -23,7 +23,7 @@ const Recommendations = () => {
             {/*<b>Wszystkie Produkty</b> ({productsToShow.length} wyniki)*/}
           </h1>
 
-          <div className="grid grid-cols-1 gap-10 p-2 sm:grid-cols-5">
+          <div className="grid grid-cols-1 p-2 sm:grid-cols-6">
             {productsToShow.length > 0 ? (
               productsToShow.map((item) => (
                 <MenuItem key={item.id} product={item} />

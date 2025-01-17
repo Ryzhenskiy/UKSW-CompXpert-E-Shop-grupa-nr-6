@@ -17,10 +17,8 @@ const OrdersPage = () => {
 
   function fetchOrders() {
     fetch('/api/orders').then((res) => {
-      console.log(res);
       res.json().then((orders) => {
         setOrders(orders.reverse());
-        console.log(orders);
         setLoadingOrders(false);
       });
     });

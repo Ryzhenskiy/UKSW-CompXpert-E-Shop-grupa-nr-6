@@ -1,5 +1,6 @@
 import { User } from '@/app/models/User';
 import { UserInfo } from '@/app/models/UserInfo';
+import { Log } from '@/app/models/Log';
 import { getServerSession } from 'next-auth';
 import mongoose from 'mongoose';
 import NextAuth from 'next-auth';
@@ -39,15 +40,37 @@ export const authOptions = {
         const user = await User.findOne({ email });
         const passwordOk = user && bcrypt.compareSync(password, user.password);
 
-        console.log({ passwordOk });
         if (passwordOk) {
-          console.log(user);
+          await Log.create({
+            email: user.email,
+            action: 'Login',
+            provider: 'Credentials',
+            timestamp: new Date(),
+          });
           return user;
         }
         return null;
       },
     }),
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      try {
+        await mongoose.connect(process.env.MONGO_URL);
+
+        await Log.create({
+          email: user.email,
+          action: 'Login',
+          provider: account?.provider,
+          timestamp: new Date(),
+        });
+        return true;
+      } catch (error) {
+        console.error('Error logging user activity:', error);
+        return false;
+      }
+    },
+  },
 };
 
 export async function isAdmin() {

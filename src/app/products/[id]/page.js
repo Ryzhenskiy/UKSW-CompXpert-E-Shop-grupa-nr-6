@@ -23,6 +23,7 @@ const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [reviews, setReviews] = useState(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   const session = useSession();
   const dispatch = useDispatch();
   const { status } = session;
@@ -73,26 +74,47 @@ const ProductPage = () => {
   }
 
   return (
-    <div className="flex flex-col mx-auto max-w-3xl md:w-1/2">
-      <div className="flex flex-col md:flex-row items-center justify-center mt-8 md:items-start gap-36">
+    <div className="flex flex-col max-w-4xl mx-auto mt-8">
+      <div className="flex flex-col md:flex-row justify-between max-w-4xl gap-36 mx-auto">
         <div className="max-w-lg md:w-1/2">
           <img
             src={product?.image}
             alt={product?.name}
-            className="w-full h-auto rounded-md shadow-md"
+            className="object-cover"
           />
         </div>
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold mb-4">{product?.name}</h1>
           <p>Opis</p>
-          <div className="max-w-lg md:w-1/2">
-            <p className="text-gray-600 mb-4">{product?.description}</p>
+          <div className="w-96">
+            <div
+              className={`text-gray-600 mb-4 ${
+                isExpanded ? '' : 'line-clamp-3 overflow-hidden'
+              }`}
+            >
+              {product?.description}
+            </div>
+            {!isExpanded && (
+              <button
+                className="text-blue-500  mb-5"
+                onClick={() => setIsExpanded(true)}
+              >
+                Pokaż więcej
+              </button>
+            )}
+            {isExpanded && (
+              <button
+                className="text-blue-500 mb-5"
+                onClick={() => setIsExpanded(false)}
+              >
+                Pokaż mniej
+              </button>
+            )}
             <p className="text-2xl font-semibold text-blue-600 mb-6">
               {product?.basePrice} zł
             </p>
             <button className="primary">Dodaj do koszyka</button>
           </div>
-
           <br />
           <button
             type="button"
@@ -103,10 +125,12 @@ const ProductPage = () => {
           >
             <Heart className="w-6 h-6" />
           </button>
-          <br/>
+          <br />
           Dodaj do listy zakupowej:
-          <br/>
-          <div className="flex gap-2 mt-4"> {/* Flex container for buttons */}
+          <br />
+          <div className="flex w-xl gap-2 mt-4">
+            {' '}
+            {/* Flex container for buttons */}
             {[1, 2, 3, 4, 5].map((nr) => (
               <button
                 key={nr}

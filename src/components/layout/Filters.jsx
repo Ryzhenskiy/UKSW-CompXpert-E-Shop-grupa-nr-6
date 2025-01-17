@@ -1,43 +1,98 @@
-const Filters = ({ handleFilterByPart }) => {
-  const partTypes = ['CPU', 'GPU', 'Motherboard', 'RAM', 'Storage'];
-  const brands = ['Intel', 'AMD', 'NVIDIA', 'Corsair', 'Samsung'];
+import React, { useState } from 'react';
+
+const ProductFilter = ({ products }) => {
+  const [selectedManufacturer, setSelectedManufacturer] = useState('');
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 1000 });
+
+  // Wyciągnięcie unikalnych producentów
+  const manufacturers = Array.from(
+    new Set(products.map((product) => product.manufacturer))
+  );
+
+  // Filtrowanie produktów
+  const filteredProducts = products.filter((product) => {
+    const withinPriceRange =
+      product.price >= priceRange.min && product.price <= priceRange.max;
+    const matchesManufacturer =
+      selectedManufacturer === '' ||
+      product.manufacturer === selectedManufacturer;
+    return withinPriceRange && matchesManufacturer;
+  });
+
+  const handlePriceChange = (e) => {
+    const { name, value } = e.target;
+    setPriceRange((prevRange) => ({ ...prevRange, [name]: Number(value) }));
+  };
+
+  const toggleManufacturer = (manufacturer) => {
+    setSelectedManufacturer((prev) =>
+      prev === manufacturer ? '' : manufacturer
+    );
+  };
 
   return (
-    <div className=" w-[20%] p-4 bg-gray-100 rounded-lg shadow-md">
-      {/* Part Type Filter */}
-      <div className="mb-6">
-        <h4 className="font-semibold mb-2">Part Type</h4>
-        {partTypes.map((part) => (
-          <label key={part} className="block mb-2">
-            <input
-              type="checkbox"
-              value={part}
-              className="mr-2"
-              onChange={() => handleFilterByPart(part)}
-            />
-            {part}
-          </label>
-        ))}
+    <div className="p-4 bg-gray-100 min-h-screen">
+      <h2 className="text-2xl font-bold mb-4">Filtruj produkty</h2>
+
+      <div className="mb-4">
+        <p className="block text-sm font-medium text-gray-700 mb-2">
+          Producent:
+        </p>
+        <ul className="flex flex-wrap gap-2">
+          <li>
+            <button
+              className={`px-4 py-2 rounded-md shadow-sm text-sm ${
+                selectedManufacturer === ''
+                  ? 'bg-indigo-500 text-white'
+                  : 'bg-gray-200 text-gray-700'
+              }`}
+              onClick={() => toggleManufacturer('')}
+            >
+              Wszyscy
+            </button>
+          </li>
+          {manufacturers.map((manufacturer) => (
+            <li key={manufacturer}>
+              <button
+                className={`px-4 py-2 rounded-md shadow-sm text-sm ${
+                  selectedManufacturer === manufacturer
+                    ? 'bg-indigo-500 text-white'
+                    : 'bg-gray-200 text-gray-700'
+                }`}
+                onClick={() => toggleManufacturer(manufacturer)}
+              >
+                {manufacturer}
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      {/* Brand Filter */}
-      <div className="mb-6">
-        <h4 className="font-semibold mb-2">Marka</h4>
-        {brands.map((brand) => (
-          <label key={brand} className="block mb-2">
-            <input type="checkbox" value={brand} className="mr-2" />
-            {brand}
-          </label>
-        ))}
-      </div>
+      <div className="grid grid-cols-2 gap-4 mb-4">
+        <label className="block text-sm font-medium text-gray-700">
+          Cena minimalna:
+          <input
+            type="number"
+            name="min"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            value={priceRange.min}
+            onChange={handlePriceChange}
+          />
+        </label>
 
-      {/* Price Filter */}
-      <div className="mb-6">
-        <h4 className="font-semibold mb-2">Zakres ceny</h4>
-        <input type="range" min="50" max="5000" className="w-full" />
-        <span className="block mt-2 text-sm"></span>
+        <label className="block text-sm font-medium text-gray-700">
+          Cena maksymalna:
+          <input
+            type="number"
+            name="max"
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            value={priceRange.max}
+            onChange={handlePriceChange}
+          />
+        </label>
       </div>
     </div>
   );
 };
-export default Filters;
+
+export default ProductFilter;

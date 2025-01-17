@@ -56,10 +56,10 @@ const Rating = ({ productId }) => {
   }
   return (
     <div>
-      <div className="w-4">
-        <SectionHeaders header={'Zostaw opinię'} className="mb-2" />
-        <div className="flex flex-col">
-          <span className="text-start">Ocena</span>
+      <div className="">
+        <SectionHeaders header={'Zostaw opinię'} className="mb-2 mt-5" />
+        <div className="flex flex-col w-4">
+          <span className="text-start text-gray-600">Ocena</span>
           <StarRating
             onHover={setHover}
             onRate={setRating}

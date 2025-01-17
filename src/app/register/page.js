@@ -16,10 +16,10 @@ const RegisterPage = () => {
     setCreatingUser(true);
     setUserCreated(false);
     setError(false);
-    console.log('here1');
+    const action = 'Register';
     const response = await fetch('/api/register', {
       method: 'POST',
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ email, password, action }),
       headers: { 'Content-Type': 'application/json' },
     });
 

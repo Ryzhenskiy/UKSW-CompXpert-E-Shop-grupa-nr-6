@@ -16,12 +16,12 @@ const LikedProductsPage = () => {
         <div>Brak produktów na liście ulubionych.</div>
       )}
       {likedProducts?.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
+        <div className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-8">
           {likedProducts.map((product, index) => (
-            <MenuItemList 
-              key = {index}
-              product = {product}
-              onRemove = {removeFromLiked}
+            <MenuItemList
+              key={index}
+              product={product}
+              onRemove={removeFromLiked}
             />
           ))}
         </div>

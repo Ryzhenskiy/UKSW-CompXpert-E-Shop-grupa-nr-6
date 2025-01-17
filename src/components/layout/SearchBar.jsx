@@ -12,6 +12,7 @@ const SearchBar = () => {
     ev.preventDefault();
 
     const encodedSearchQuery = encodeURI(searchQuery);
+    if (!searchQuery) return;
     router.push(`/products?q=${encodedSearchQuery}`);
   };
 
