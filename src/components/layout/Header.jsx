@@ -100,7 +100,7 @@ const AuthLinks = ({ status, userName, onClose }) => {
               <Cart className="w-8 h-8" />
             </Link>
             <span className="bg-primary px-2 rounded-lg text-white absolute -top-3 -right-3">
-              {cartProducts.length}
+              {cartProducts?.length > 0 && cartProducts.reduce((acc, p) => p.qty + acc, 0)}
             </span>
           </div>
           <Link href={'/likedProducts'}>

@@ -28,6 +28,8 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const { status } = session;
 
+  const [categories, setCategories] = useState([]);
+
   useEffect(() => {
     fetch('/api/adminProducts').then((res) =>
       res.json().then((data) => {
@@ -35,6 +37,16 @@ const ProductPage = () => {
         setProduct(foundProduct);
       })
     );
+
+    fetch('/api/categories', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    }).then((res) =>
+      res.json().then((data) => {
+        setCategories(data);
+      })
+    );
+
     fetchReviews();
   }, []);
 
@@ -85,6 +97,14 @@ const ProductPage = () => {
         </div>
         <div className="flex flex-col">
           <h1 className="text-3xl font-bold mb-4">{product?.name}</h1>
+          <div className="max-w-lg md:w-2/2">
+            <p className="mb-4">
+              Kategoria:{' '}
+              {categories.length > 0 && product?.category
+                ? categories.find((cat) => cat._id === product.category)?.name || 'Nieznana'
+                : 'Ładowanie...'}
+            </p>
+          </div>
           <p>Opis</p>
           <div className="w-96">
             <div
@@ -115,19 +135,18 @@ const ProductPage = () => {
             </p>
             <button className="primary">Dodaj do koszyka</button>
           </div>
-          <br />
-          <button
-            type="button"
-            onClick={(ev) => {
-              handleAddProductToFavourites();
-            }}
-            className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
-          >
-            <Heart className="w-6 h-6" />
-          </button>
-          <br />
-          Dodaj do listy zakupowej:
-          <br />
+          <p className="mt-8">
+            <button
+              type="button"
+              onClick={(ev) => {
+                handleAddProductToFavourites();
+              }}
+              className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
+            >
+              <Heart className="w-6 h-6" />
+            </button>
+          </p>
+          <p className="mt-4">Dodaj do listy zakupowej:</p>
           <div className="flex w-xl gap-2 mt-4">
             {' '}
             {/* Flex container for buttons */}
