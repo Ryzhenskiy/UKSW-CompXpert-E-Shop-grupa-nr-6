@@ -1,7 +1,7 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useSession } from 'next-auth/react';
 import { useDispatch } from 'react-redux';
 import { addToLiked } from '../../../../redux/slices/likedProductsSlice';
@@ -19,6 +19,8 @@ import toast from 'react-hot-toast';
 import Heart from '@/components/icons/Heart';
 import Edit from '@/components/icons/Edit';
 
+import jsPDF from 'jspdf';
+
 const ProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -27,8 +29,9 @@ const ProductPage = () => {
   const session = useSession();
   const dispatch = useDispatch();
   const { status } = session;
-
   const [categories, setCategories] = useState([]);
+
+  const pdfRef = useRef();
 
   useEffect(() => {
     fetch('/api/adminProducts').then((res) =>
@@ -63,6 +66,41 @@ const ProductPage = () => {
     dispatch(addToLiked(product));
     toast.success('Produkt został dodany do ulubionych.');
   }
+
+  const generatePdf = () => {
+    const input = pdfRef.current;
+
+    const margin = 50;
+  
+    const pdf = new jsPDF('p', 'pt', 'a4');
+
+    const normalizeText = (text) => (text ? text.normalize('NFC') : '');
+    pdf.setFont('helvetica', 'normal');
+  
+    const productName = product?.name || 'Brak nazwy produktu.';
+    const productPrice = product?.basePrice || 'Brak ceny produktu.';
+    const productCategory =
+      categories.length > 0 && product?.category
+        ? categories.find((cat) => cat._id === product.category)?.name || 'Nieznana'
+        : 'Błąd';
+    const productDescription = normalizeText(product?.description || 'Brak opisu produktu.');
+  
+    pdf.setFontSize(18);
+    pdf.text('Podstawowe informacje o produkcie:', margin, 70);
+
+    pdf.setFontSize(12);
+    pdf.text(`Nazwa produktu: ${productName}`, margin, 110);
+    pdf.text(`Kategoria: ${productCategory}`, margin, 130);
+    pdf.text(`Cena: ${productPrice} zl`, margin, 150);
+    pdf.text('Opis:', margin, 170);
+  
+    const splitDescription = pdf.splitTextToSize(productDescription, 510);
+    pdf.text(splitDescription, margin, 190);
+
+    pdf.text('CompXpert 2025 all rights reserved.', margin+150, 800);
+      
+    pdf.save('product-details.pdf');
+  };
 
   function handleAddProductToShoppingList(nr) {
     switch (nr) {
@@ -162,6 +200,9 @@ const ProductPage = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="flex flex-col max-w-4xl mx-auto mt-8" ref={pdfRef}>
+        <button onClick={generatePdf}>Wygeneruj informacje o produkcie do PDF</button>
       </div>
       {status === 'unauthenticated' ? (
         <div className="text-center text-gray-500 mt-4 border-t pt-4">

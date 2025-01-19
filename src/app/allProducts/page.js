@@ -59,7 +59,7 @@ const ProductsPage = () => {
         </h2>
 
         <div className="mb-4">
-          <p className="block text-sm font-medium text-gray-600 mb-2">
+          <p className="text-gray-700 mb-4">
             Kategorie:
           </p>
           <ul className="flex flex-col gap-2">
@@ -72,7 +72,7 @@ const ProductsPage = () => {
                 }`}
                 onClick={() => toggleCategory('')}
               >
-                Wszyscy
+                Wszystkie produkty
               </button>
             </li>
             {categories.map((category) => (

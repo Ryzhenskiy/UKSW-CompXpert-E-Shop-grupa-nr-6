@@ -48,7 +48,7 @@ const ProductFilter = ({ products }) => {
               }`}
               onClick={() => toggleManufacturer('')}
             >
-              Wszyscy
+              Wszystkie produkty
             </button>
           </li>
           {manufacturers.map((manufacturer) => (

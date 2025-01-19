@@ -9,6 +9,9 @@ const Hero = () => {
   const all_products_page = () => {
     router.push('/allProducts');
   };
+  const information_page = () => {
+    router.push('/information');
+  };
   return (
     <section className="relative h-[80vh] flex items-center justify-center  text-white">
       {/* Overlay */}
@@ -26,7 +29,7 @@ const Hero = () => {
               Zamów teraz
               <Right />
             </button>
-            <button type="button" className="border border-white text-white">
+            <button type="button" className="border border-white text-white"  onClick={information_page}>
               Więcej
               <Right />
             </button>
