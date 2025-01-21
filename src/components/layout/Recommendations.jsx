@@ -17,8 +17,8 @@ const Recommendations = () => {
   return (
     <section className="mt-5 flex justify-center">
       <div className="flex w-[95%]">
-        <div className="flex-col p-2 w-[90%]">
-          <div className="grid grid-cols-1 p-2 sm:grid-cols-6">
+        <div className="flex-col p-2 w-[100%]">
+          <div className="grid grid-cols-1 p-2 sm:grid-cols-5">
             {productsToShow.length > 0 ? (
               productsToShow.map((item) => (
                 <MenuItem key={item.id} product={item} />

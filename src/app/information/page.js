@@ -1,25 +1,18 @@
 import Image from 'next/image';
 import SectionHeaders from '@/components/layout/SectionHeaders';
+import SectionBigHeader from '@/components/layout/SectionBigHeader';
 
 export default function Home() {
   return (
     <div>
-        <section className="relative h-[80vh] flex items-center justify-center  text-white">
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black bg-opacity-35 flex items-center justify-center px-6">
-            <div className="text-center max-w-3xl">
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                    CompXpert to najlepsze miejsce
-                </h1>
-                <p className="text-lg md:text-xl mb-8">
-                    dla najwyższej klasy sprzętu komputerowego i
-                    akcesoriów technicznych.
-                </p>
+        <section>
             <section className="text-center my-8">
-                <h1 className="text-4xl md:text-4xl font-bold mb-4">
-                    Nasza historia
-                </h1>
-                <div className="text-white-500 max-w-md mx-auto mt-4 flex flex-col gap-4">
+                <SectionBigHeader header={'CompXpert to najlepsze miejsce'} />
+                <p className="text-lg md:text-xl mb-8">
+                    dla najwyższej klasy sprzętu komputerowego i akcesoriów technicznych.
+                </p>
+                <SectionHeaders header={'Nasza historia'} />
+                <div className="text-black-500 max-w-md mx-auto mt-4 flex flex-col gap-4">
                     <p>
                         CompXpert powstał w 2024 roku w Warszawie z inicjatywy, pasjonatów technologii, 
                         którzy dostrzegli brak profesjonalnych sklepów z akcesoriami komputerowymi. 
@@ -41,31 +34,19 @@ export default function Home() {
                 </div>
             </section>
             <section className="text-center my-8">
-                <h1 className="text-4xl md:text-4xl font-bold mb-4">
-                    Kontakt
-                </h1>
+                <SectionHeaders
+                header={"Kontakt"}
+                />
                 <div className="mt-8">
-                    <a
-                        ahref="tel:+48333333333"
-                        className="text-4xl underline text-white-500"
-                    >
-                        +48 333 333 333
-                    </a>
+                <a
+                    ahref="tel:+48333333333"
+                    className="text-4xl underline text-gray-500"
+                >
+                    +48 333 333 333
+                </a>
                 </div>
-                </section>
-            </div>
-        </div>
-
-      {/* Background Image */}
-      <Image
-        src="/carousel-1.jpg" // Path to your background image
-        alt="Hero Background"
-        layout="fill"
-        objectFit="cover"
-        quality={90}
-        className="-z-10" // Ensures the image is behind all content
-      />
-    </section>
+            </section>
+        </section>
     </div>
   );
 }

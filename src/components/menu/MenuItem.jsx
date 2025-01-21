@@ -29,7 +29,7 @@ const MenuItem = ({ product }) => {
   }
   
   return (
-    <div className="w-64 h-[410px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
+    <div className="w-64 h-[420px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
       <Link href={'/products/' + product._id}>
         <div className="text-center h-[200px] flex items-center justify-center">
           <Image
@@ -41,7 +41,7 @@ const MenuItem = ({ product }) => {
           />
         </div>
 
-        <h4 className="font-semibold text-xl my-3 h-[50px] line-clamp-1">
+        <h4 className="font-semibold text-xl my-3 h-[60px] line-clamp-1">
           {product.name}
         </h4>
         <p className="text-gray-500 text-sm line-clamp-3 h-[60px]">
