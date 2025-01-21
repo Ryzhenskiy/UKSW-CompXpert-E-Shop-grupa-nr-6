@@ -27,11 +27,11 @@ export async function POST(req) {
     stripeLineItems.push({
       quantity: cartProduct.qty,
       price_data: {
-        currency: 'USD',
+        currency: 'PLN',
         product_data: {
           name: productName,
         },
-        unit_amount: productPrice * 100 * cartProduct.qty,
+        unit_amount: productPrice * 100,
       },
     });
   }
@@ -56,7 +56,7 @@ export async function POST(req) {
         shipping_rate_data: {
           display_name: 'Delievery fee',
           type: 'fixed_amount',
-          fixed_amount: { amount: 500, currency: 'USD' },
+          fixed_amount: { amount: 500, currency: 'PLN' },
         },
       },
     ],

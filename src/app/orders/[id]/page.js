@@ -1,35 +1,71 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import SectionHeaders from '../../../components/layout/SectionHeaders';
 import { useParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import AddressInputs from '@/components/layout/AddressInputs';
 import CartProduct from '@/components/layout/CartProduct';
 import { clearCart } from '../../../../redux/slices/cartSlice';
+import { useProfile } from '@/app/hooks/UseProfile';
+
 const OrderPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const [order, setOrder] = useState();
   const [loadingOrder, setLoadingOrder] = useState(true);
-  useEffect(() => {
-    if (typeof window.console !== 'undefined') {
-      if (window.location.href.includes('clear-cart=1')) {
-        dispatch(clearCart());
-      }
+  const { data: profileData } = useProfile();
+  const emailSentRef = useRef(false);
+
+  const sendEmail = async () => {
+    if (!profileData?.email || emailSentRef.current || !order) {
+      return; // Exit if email already sent or email not defined
     }
 
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        to: profileData.email,
+        subject: `Zamówienie ${order._id}`,
+        text: `Twoje zamówienie jest w trakcie realizacji\nProdukty: ${order.cartProducts
+          .map((product) => product.name)
+          .join(', ')}`,
+      }),
+    });
+
+    if (response.ok) {
+      console.log('Email sent successfully');
+      emailSentRef.current = true; // Mark email as sent
+    } else {
+      console.error('Failed to send email');
+    }
+  };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldClearCart =
+      urlParams.has('clear-cart') && urlParams.get('clear-cart') === '1';
+
+    if (shouldClearCart) {
+      dispatch(clearCart());
+      sendEmail();
+    }
+  }, [profileData]);
+
+  useEffect(() => {
     if (id) {
       setLoadingOrder(true);
       fetch('/api/orders?_id=' + id).then((res) =>
         res.json().then((orderData) => {
           setOrder(orderData);
-          console.log(orderData);
           setLoadingOrder(false);
         })
       );
     }
-  }, []);
+  }, [id]);
 
   let subtotal = 0;
 
@@ -59,15 +95,19 @@ const OrderPage = () => {
             <div className="text-right py-2 text-gray-500">
               Towary:{' '}
               <span className="text-black inline-block w-6 font-bold">
-                {subtotal}{'\u00A0'}zł
+                {subtotal}
+                {'\u00A0'}zł
               </span>
               <br />
               Dostawa:{' '}
-              <span className="text-black inline-block w-6 font-bold">5{'\u00A0'}zł</span>
+              <span className="text-black inline-block w-6 font-bold">
+                5{'\u00A0'}zł
+              </span>
               <br />
               Do zapłaty:{' '}
               <span className="text-black inline-block w-6 font-bold">
-                {subtotal + 5}{'\u00A0'}zł
+                {subtotal + 5}
+                {'\u00A0'}zł
               </span>
               <br />
             </div>

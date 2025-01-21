@@ -1,5 +1,4 @@
 import { Order } from '@/app/models/Order';
-
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 export async function POST(req) {
@@ -16,6 +15,7 @@ export async function POST(req) {
   }
 
   if (event.type === 'checkout.session.completed') {
+
     const orderId = event?.data?.object?.metadata?.orderId;
     const isPaid = event?.data?.object?.payment_status === 'paid';
     if (isPaid) {

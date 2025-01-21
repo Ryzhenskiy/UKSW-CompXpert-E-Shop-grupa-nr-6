@@ -7,11 +7,12 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { removeFromCart } from '../../../redux/slices/cartSlice';
 import CartProduct from '@/components/layout/CartProduct';
-
 import toast from 'react-hot-toast';
 import AddressInputs from '@/components/layout/AddressInputs';
 
 import SectionHeaders from '@/components/layout/SectionHeaders';
+// import { sendMail } from '../../libs/mail';
+
 const CartPage = () => {
   const dispatch = useDispatch();
   const cartProducts = useSelector((state) => state.cart.cartProducts);
@@ -28,7 +29,6 @@ const CartPage = () => {
   }, []);
 
   useEffect(() => {
-    console.log(profileData);
     if (profileData?.city) {
       const { phone, streetAddress, city, postalCode, country } = profileData;
       const addressFromProfile = {
@@ -46,7 +46,10 @@ const CartPage = () => {
     setAddress((prev) => ({ ...prev, [propName]: value }));
   }
 
+  
+
   async function proceedToCheckout(ev) {
+
     const promise = new Promise((resolve, reject) => {
       ev.preventDefault();
       fetch('/api/checkout', {
@@ -106,21 +109,22 @@ const CartPage = () => {
 
               <div className="text-lg font-semibold pl-2 text-right">
                 {subtotal} zł <br />
-                5 zł <br />{subtotal + 5} zł
+                5 zł <br />
+                {subtotal + 5} zł
               </div>
             </div>
           </div>
           <div className="bg-gray-100 p-4 rounded-lg h-fit">
-          <h2>Dane zamówienia</h2>
-          <form onSubmit={proceedToCheckout}>
-            <AddressInputs
-              addressProps={address}
-              setAddressProps={handleAddressChange}
-            />
-            <button type="submit">Zapłać: {subtotal + 5} zł </button>
-          </form>
+            <h2>Dane zamówienia</h2>
+            <form onSubmit={proceedToCheckout}>
+              <AddressInputs
+                addressProps={address}
+                setAddressProps={handleAddressChange}
+              />
+              <button type="submit">Zapłać: {subtotal + 5} zł </button>
+            </form>
+          </div>
         </div>
-      </div>
       )}
     </section>
   );
