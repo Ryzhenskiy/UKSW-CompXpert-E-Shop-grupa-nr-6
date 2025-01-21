@@ -8,7 +8,9 @@
 
 .env
 
+# IDEs
 .idea
+.vscode
 
 # testing
 /coverage
