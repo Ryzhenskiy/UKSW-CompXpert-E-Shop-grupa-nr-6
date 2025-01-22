@@ -6,6 +6,8 @@ import { useProfile } from '@/app/hooks/UseProfile';
 import { useEffect, useState } from 'react';
 import { dbTimeForHuman } from '../../libs/datetime';
 
+import withAuth from '../../hoc/withAuth';
+
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
@@ -29,6 +31,9 @@ const OrdersPage = () => {
       <UserTabs isAdmin={profile.admin} />
       <div className="mt-8">
         {loadingOrders && <div>Ładowanie zamówień...</div>}
+        <div className="p-2 text-gray-700 font-semibold">
+          Liczba zamówień: {orders.length}
+        </div>
         {orders.length > 0 &&
           orders.map((order) => (
             <div className="bg-gray-100 mb-2 p-4 rounded-lg flex flex-col md:flex-row items-center gap-6">
@@ -70,4 +75,4 @@ const OrdersPage = () => {
     </section>
   );
 };
-export default OrdersPage;
+export default withAuth(OrdersPage);

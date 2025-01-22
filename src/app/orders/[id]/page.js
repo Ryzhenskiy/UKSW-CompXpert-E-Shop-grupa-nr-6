@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useRef } from 'react';
 import SectionHeaders from '../../../components/layout/SectionHeaders';
-import { useParams } from 'next/navigation';
+import { redirect, useParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import AddressInputs from '@/components/layout/AddressInputs';
 import CartProduct from '@/components/layout/CartProduct';
 import { clearCart } from '../../../../redux/slices/cartSlice';
 import { useProfile } from '@/app/hooks/UseProfile';
+import withAuth from '../../../hoc/withAuth';
 
 const OrderPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const OrderPage = () => {
 
   const sendEmail = async () => {
     if (!profileData?.email || emailSentRef.current || !order) {
+      console.log('Email not sent');
       return; // Exit if email already sent or email not defined
     }
 
@@ -52,6 +54,9 @@ const OrderPage = () => {
     if (shouldClearCart) {
       dispatch(clearCart());
       sendEmail();
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 5000);
     }
   }, [profileData]);
 
@@ -122,4 +127,4 @@ const OrderPage = () => {
     </section>
   );
 };
-export default OrderPage;
+export default withAuth(OrderPage);

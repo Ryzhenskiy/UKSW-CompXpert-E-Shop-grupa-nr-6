@@ -11,7 +11,6 @@ import UserTabs from '@/components/layout/UserTabs';
 const ProfilePage = () => {
   const session = useSession();
   const { status } = session;
-  console.log(status);
 
   const [user, setUser] = useState(null);
 

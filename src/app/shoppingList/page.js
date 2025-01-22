@@ -14,12 +14,24 @@ import { removeFromShoppingList as removeFromShoppingList_3 } from '../../../red
 import { removeFromShoppingList as removeFromShoppingList_4 } from '../../../redux/slices/shoppingListSlice_4';
 import { removeFromShoppingList as removeFromShoppingList_5 } from '../../../redux/slices/shoppingListSlice_5';
 
+import withAuth from '../../hoc/withAuth';
+
 const ShoppingListPage = () => {
-  const shoppingListProducts = useSelector((state) => state.shopping_list.shoppingListProducts);
-  const shoppingListProducts_2 = useSelector((state) => state.shopping_list_2.shoppingListProducts);
-  const shoppingListProducts_3 = useSelector((state) => state.shopping_list_3.shoppingListProducts);
-  const shoppingListProducts_4 = useSelector((state) => state.shopping_list_4.shoppingListProducts);
-  const shoppingListProducts_5 = useSelector((state) => state.shopping_list_5.shoppingListProducts);
+  const shoppingListProducts = useSelector(
+    (state) => state.shopping_list.shoppingListProducts
+  );
+  const shoppingListProducts_2 = useSelector(
+    (state) => state.shopping_list_2.shoppingListProducts
+  );
+  const shoppingListProducts_3 = useSelector(
+    (state) => state.shopping_list_3.shoppingListProducts
+  );
+  const shoppingListProducts_4 = useSelector(
+    (state) => state.shopping_list_4.shoppingListProducts
+  );
+  const shoppingListProducts_5 = useSelector(
+    (state) => state.shopping_list_5.shoppingListProducts
+  );
   return (
     <section className="mt-8">
       <div className="text-center">
@@ -32,9 +44,9 @@ const ShoppingListPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
           {shoppingListProducts.map((product, index) => (
             <MenuItemShoppingList
-              key = {index}
-              product = {product}
-              onRemove = {removeFromShoppingList_1}
+              key={index}
+              product={product}
+              onRemove={removeFromShoppingList_1}
             />
           ))}
         </div>
@@ -49,9 +61,9 @@ const ShoppingListPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
           {shoppingListProducts_2.map((product, index) => (
             <MenuItemShoppingList_2
-              key = {index}
-              product = {product}
-              onRemove = {removeFromShoppingList_2}
+              key={index}
+              product={product}
+              onRemove={removeFromShoppingList_2}
             />
           ))}
         </div>
@@ -66,9 +78,9 @@ const ShoppingListPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
           {shoppingListProducts_3.map((product, index) => (
             <MenuItemShoppingList_3
-              key = {index}
-              product = {product}
-              onRemove = {removeFromShoppingList_3}
+              key={index}
+              product={product}
+              onRemove={removeFromShoppingList_3}
             />
           ))}
         </div>
@@ -83,9 +95,9 @@ const ShoppingListPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
           {shoppingListProducts_4.map((product, index) => (
             <MenuItemShoppingList_4
-              key = {index}
-              product = {product}
-              onRemove = {removeFromShoppingList_4}
+              key={index}
+              product={product}
+              onRemove={removeFromShoppingList_4}
             />
           ))}
         </div>
@@ -100,9 +112,9 @@ const ShoppingListPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
           {shoppingListProducts_5.map((product, index) => (
             <MenuItemShoppingList_5
-              key = {index}
-              product = {product}
-              onRemove = {removeFromShoppingList_5}
+              key={index}
+              product={product}
+              onRemove={removeFromShoppingList_5}
             />
           ))}
         </div>
@@ -110,4 +122,4 @@ const ShoppingListPage = () => {
     </section>
   );
 };
-export default ShoppingListPage;
+export default withAuth(ShoppingListPage);

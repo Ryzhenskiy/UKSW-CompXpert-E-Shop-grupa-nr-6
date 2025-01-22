@@ -6,8 +6,8 @@ import { Trash } from '@/components/icons/Trash';
 import toast from 'react-hot-toast';
 import DeleteButton from '@/components/layout/DeleteButton';
 import { useProfile } from '@/app/hooks/UseProfile';
-
 import { useEffect, useState } from 'react';
+import withAuth from '../../hoc/withAuth';
 
 const CategoriesPage = () => {
   const [categoryName, setCategoryName] = useState('');
@@ -73,9 +73,7 @@ const CategoriesPage = () => {
 
     toast.promise(creatingPromise, {
       loading: editedCategory ? 'Edycja...' : 'Tworzenie kategorii...',
-      success: editedCategory
-        ? 'Edytowano kategorię'
-        : 'Stworzono kategorię',
+      success: editedCategory ? 'Edytowano kategorię' : 'Stworzono kategorię',
       error: editedCategory
         ? 'Wystąpił błąd przy edycji kategorii!'
         : 'Wystąpił błąd przy tworzeniu kategorii!',
@@ -152,4 +150,4 @@ const CategoriesPage = () => {
   );
 };
 
-export default CategoriesPage;
+export default withAuth(CategoriesPage);

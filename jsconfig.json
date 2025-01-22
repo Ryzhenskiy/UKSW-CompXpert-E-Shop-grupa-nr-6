@@ -6,7 +6,8 @@
     "paths": {
       "@/app/*": ["./src/app/*"],
       "@/models/*": ["./src/models/*"],
-      "@/components/*": ["./src/components/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/hoc/*": ["./src/hoc/*"]
     }
   },
   "exclude": ["node_modules", "**/node_modules/*"]

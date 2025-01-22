@@ -9,6 +9,7 @@ import DeleteButton from '@/components/layout/DeleteButton';
 import { redirect, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useProfile } from '@/app/hooks/UseProfile';
+import withAuth from '../../../../hoc/withAuth';
 
 const AdminProductEditPage = () => {
   const { id } = useParams();
@@ -87,4 +88,4 @@ const AdminProductEditPage = () => {
     </section>
   );
 };
-export default AdminProductEditPage;
+export default withAuth(AdminProductEditPage);

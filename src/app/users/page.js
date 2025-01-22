@@ -5,6 +5,7 @@ import Edit from '@/components/icons/Edit';
 import { useProfile } from '../hooks/UseProfile';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import withAuth from '../../hoc/withAuth';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);
@@ -51,4 +52,4 @@ const UsersPage = () => {
     </section>
   );
 };
-export default UsersPage;
+export default withAuth(UsersPage);

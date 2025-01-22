@@ -9,11 +9,11 @@ const ProductsPage = () => {
   const [categories, setCategories] = useState([]);
 
   const [selectedCategory, setSelectedCategory] = useState('');
-  const [priceRange, setPriceRange] = useState({ min: 0, max: 10000 });
+  const [priceRange, setPriceRange] = useState({ min: '0', max: '10000' });
 
   const handlePriceChange = (e) => {
     const { name, value } = e.target;
-    setPriceRange((prevRange) => ({ ...prevRange, [name]: Number(value) }));
+    setPriceRange((prevRange) => ({ ...prevRange, [name]: value }));
   };
 
   const toggleCategory = (category) => {
@@ -23,7 +23,10 @@ const ProductsPage = () => {
   useEffect(() => {
     fetch('/api/adminProducts')
       .then((res) => res.json())
-      .then((data) => setProducts(data));
+      .then((data) => {
+        setProducts(data);
+        setFilteredProducts(data);
+      });
   }, []);
 
   useEffect(() => {
@@ -45,7 +48,6 @@ const ProductsPage = () => {
       const matchesCategory =
         selectedCategory === '' || product.category === selectedCategory._id;
 
-      console.log(withinPriceRange || matchesCategory);
       return matchesCategory && withinPriceRange;
     });
     setFilteredProducts(filteredProductsNew);
@@ -59,9 +61,7 @@ const ProductsPage = () => {
         </h2>
 
         <div className="mb-4">
-          <p className="text-gray-700 mb-4">
-            Kategorie:
-          </p>
+          <p className="text-gray-700 mb-4">Kategorie:</p>
           <ul className="flex flex-col gap-2">
             <li>
               <button
@@ -79,7 +79,7 @@ const ProductsPage = () => {
               <li key={category._id}>
                 <button
                   className={`px-4 py-2 rounded-md shadow-sm text-sm ${
-                    selectedCategory === category._id
+                    selectedCategory._id === category._id
                       ? 'bg-indigo-500 text-white'
                       : 'bg-gray-200 text-gray-700'
                   }`}
@@ -126,18 +126,17 @@ const ProductsPage = () => {
                 ? 'Wszystkie Produkty'
                 : `${selectedCategory.name.toUpperCase()}`}
             </b>{' '}
-            ({!selectedCategory ? products.length : filteredProducts.length}{' '}
+            (
+            {!selectedCategory
+              ? filteredProducts.length
+              : filteredProducts.length}{' '}
             wyniki)
           </h1>
 
           <div className=" mt-5 grid grid-cols-1 gap-5 p-2 sm:grid-cols-4">
-            {!selectedCategory
-              ? products.map((item) => (
-                  <MenuItem key={item.id} product={item} />
-                ))
-              : filteredProducts.map((item) => (
-                  <MenuItem key={item.id} product={item} />
-                ))}
+            {filteredProducts.map((item) => (
+              <MenuItem key={item.id} product={item} />
+            ))}
           </div>
         </div>
       </div>

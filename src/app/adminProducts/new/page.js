@@ -5,6 +5,8 @@ import ProductForm from '@/components/layout/ProductForm';
 import Left from '@/components/icons/Left';
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
+import withAuth from '../../hoc/withAuth';
+
 const AdminProductNewPage = () => {
   const [redirectToProducts, setRedirectToProducts] = useState(false);
 
@@ -34,4 +36,4 @@ const AdminProductNewPage = () => {
     </section>
   );
 };
-export default AdminProductNewPage;
+export default withAuth(AdminProductNewPage);

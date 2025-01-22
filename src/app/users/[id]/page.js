@@ -6,6 +6,7 @@ import { useProfile } from '../../hooks/UseProfile';
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import UserForm from '@/components/layout/UserForm';
+import withAuth from '../../../hoc/withAuth';
 
 const EditUserPage = () => {
   const { loading, data } = useProfile();
@@ -60,4 +61,4 @@ const EditUserPage = () => {
     </section>
   );
 };
-export default EditUserPage;
+export default withAuth(EditUserPage);

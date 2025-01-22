@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import SectionHeaders from '@/components/layout/SectionHeaders';
 import MenuItemList from '@/components/menu/MenuItemLiked';
 import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
+import withAuth from '../../hoc/withAuth';
 
 const LikedProductsPage = () => {
   const likedProducts = useSelector((state) => state.liked.likedProducts);
@@ -29,4 +30,4 @@ const LikedProductsPage = () => {
     </section>
   );
 };
-export default LikedProductsPage;
+export default withAuth(LikedProductsPage);

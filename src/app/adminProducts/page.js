@@ -3,8 +3,8 @@ import UserTabs from '@/components/layout/UserTabs';
 import Link from 'next/link';
 import Image from 'next/image';
 import Right from '@/components/icons/Right';
-import Left from '@/components/icons/Left';
 import { useEffect, useState } from 'react';
+import withAuth from '../../hoc/withAuth';
 const AdminProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
@@ -49,4 +49,4 @@ const AdminProducts = () => {
     </section>
   );
 };
-export default AdminProducts;
+export default withAuth(AdminProducts);
