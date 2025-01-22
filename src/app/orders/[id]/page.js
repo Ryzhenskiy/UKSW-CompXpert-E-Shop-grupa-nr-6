@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import SectionHeaders from '../../../components/layout/SectionHeaders';
-import { redirect, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import AddressInputs from '@/components/layout/AddressInputs';
 import CartProduct from '@/components/layout/CartProduct';
@@ -18,34 +18,6 @@ const OrderPage = () => {
   const { data: profileData } = useProfile();
   const emailSentRef = useRef(false);
 
-  const sendEmail = async () => {
-    if (!profileData?.email || emailSentRef.current || !order) {
-      console.log('Email not sent');
-      return; // Exit if email already sent or email not defined
-    }
-
-    const response = await fetch('/api/send-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        to: profileData.email,
-        subject: `Zamówienie ${order._id}`,
-        text: `Twoje zamówienie jest w trakcie realizacji\nProdukty: ${order.cartProducts
-          .map((product) => product.name)
-          .join(', ')}`,
-      }),
-    });
-
-    if (response.ok) {
-      console.log('Email sent successfully');
-      emailSentRef.current = true; // Mark email as sent
-    } else {
-      console.error('Failed to send email');
-    }
-  };
-
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const shouldClearCart =
@@ -53,10 +25,6 @@ const OrderPage = () => {
 
     if (shouldClearCart) {
       dispatch(clearCart());
-      sendEmail();
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 5000);
     }
   }, [profileData]);
 

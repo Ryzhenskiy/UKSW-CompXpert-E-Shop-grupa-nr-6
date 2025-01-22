@@ -16,7 +16,7 @@ const Rating = ({ productId }) => {
   const [rating, setRating] = useState(0); // Wybrana ocena
   const [hover, setHover] = useState(0);
   console.log(userName);
-
+  
   useEffect(() => {
     if (session?.data?.user) {
       setUserName(name || ''); // Pobierz nazwę użytkownika z sesji

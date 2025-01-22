@@ -8,7 +8,7 @@ import { addToCart } from '../../../redux/slices/cartSlice';
 import { removeFromLiked } from '../../../redux/slices/likedProductsSlice';
 import toast from 'react-hot-toast';
 import Edit from '@/components/icons/Edit';
-import Trash from '@/components/icons/Trash';
+import { Trash } from '@/components/icons/Trash';
 
 const MenuItemList = ({ product, onRemove }) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const MenuItemList = ({ product, onRemove }) => {
   //  dispatch(onRemove(id));
   //  toast.success('Produkt został usunięty z koszyka.');
   //}
-  
+
   return (
     <div className="w-64 h-[410px] text-center p-4 rounded-lg hover:bg-white hover:shadow-md hover:shadow-black/25 transition-all ">
       <Link href={'/products/' + product._id}>
@@ -70,7 +70,7 @@ const MenuItemList = ({ product, onRemove }) => {
           }}
           className="w-10 text-primary hover:text-white border border-primary p-1 rounded-md hover:bg-primary hover:cursor-pointer transition-all"
         >
-          Usuń
+          <Trash className="w-6 h-6" />
         </button>
       </div>
     </div>
